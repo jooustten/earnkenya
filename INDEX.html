@@ -1,0 +1,2811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIAMINESOLUTIONS - Make Money Online</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2ecc71;
+            --primary-dark: #27ae60;
+            --secondary: #f39c12;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+            --danger: #e74c3c;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --info: #3498db;
+            --white: #ffffff;
+            --gray: #95a5a6;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding-bottom: 80px;
+        }
+
+        .container {
+            max-width: 100%;
+            padding: 0 15px;
+        }
+
+        /* Authentication Styles */
+        .auth-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        }
+
+        .auth-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: var(--shadow);
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .auth-header h1 {
+            color: var(--primary);
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+
+        .auth-header p {
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(46, 204, 113, 0.2);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background: #e67e22;
+        }
+
+        .btn-google {
+            background: #db4437;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-google:hover {
+            background: #c23321;
+        }
+
+        .auth-divider {
+            text-align: center;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .auth-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #ddd;
+        }
+
+        .auth-divider span {
+            background: white;
+            padding: 0 15px;
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        .auth-footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .auth-footer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Main App Styles */
+        .app-container {
+            display: none;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 20px 15px;
+            text-align: center;
+            position: relative;
+            box-shadow: var(--shadow);
+        }
+
+        .header h1 {
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .balance-card {
+            background: white;
+            margin: -30px 15px 20px;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .balance-card h2 {
+            font-size: 14px;
+            color: var(--gray);
+            margin-bottom: 5px;
+        }
+
+        .balance-card .amount {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+            background: var(--light);
+            color: var(--dark);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .action-btn.primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 25px 15px 15px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .section-title a {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 15px;
+            margin: 0 15px 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .earnings-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .earning-item {
+            background: var(--light);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .earning-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            color: white;
+        }
+
+        .earning-item h3 {
+            font-size: 14px;
+            color: var(--gray);
+            margin-bottom: 5px;
+        }
+
+        .earning-item .amount {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--primary);
+        }
+
+        .activity-details {
+            flex: 1;
+        }
+
+        .activity-details h4 {
+            font-size: 14px;
+            margin-bottom: 3px;
+        }
+
+        .activity-details p {
+            font-size: 12px;
+            color: var(--gray);
+        }
+
+        .activity-amount {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--gray);
+            font-size: 12px;
+            transition: all 0.3s;
+            flex: 1;
+        }
+
+        .nav-item.active {
+            color: var(--primary);
+        }
+
+        .nav-icon {
+            font-size: 20px;
+            margin-bottom: 3px;
+        }
+
+        /* Page Styles */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Referral Code */
+        .referral-code {
+            background: var(--light);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .referral-code h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .code {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 2px;
+            margin: 15px 0;
+        }
+
+        .copy-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .copy-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Task Item */
+        .task-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .task-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            background: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--primary);
+            font-size: 20px;
+        }
+
+        .task-details {
+            flex: 1;
+        }
+
+        .task-details h3 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .task-details p {
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        .task-reward {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .task-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .task-btn.completed {
+            background: var(--gray);
+        }
+
+        /* Account Page */
+        .profile-header {
+            display: flex;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .profile-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+            font-size: 28px;
+        }
+
+        .profile-info h2 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .profile-info p {
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        .account-menu {
+            margin-top: 20px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+            text-decoration: none;
+            color: var(--dark);
+            cursor: pointer;
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .menu-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--primary);
+        }
+
+        .menu-details {
+            flex: 1;
+        }
+
+        .menu-details h3 {
+            font-size: 16px;
+            margin-bottom: 3px;
+        }
+
+        .menu-details p {
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        .menu-arrow {
+            color: var(--gray);
+        }
+
+        /* Payment Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 400px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h2 {
+            font-size: 20px;
+            color: var(--dark);
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--gray);
+            cursor: pointer;
+        }
+
+        /* KYC Verification */
+        .kyc-status {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        .kyc-status.pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .kyc-status.verified {
+            background: #d1edff;
+            color: #0c5460;
+        }
+
+        .kyc-status.rejected {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .kyc-icon {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        .file-upload {
+            border: 2px dashed #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            margin: 15px 0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .file-upload:hover {
+            border-color: var(--primary);
+        }
+
+        .file-upload i {
+            font-size: 40px;
+            color: var(--gray);
+            margin-bottom: 10px;
+        }
+
+        .file-upload p {
+            color: var(--gray);
+            margin-bottom: 10px;
+        }
+
+        .file-preview {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .file-preview-item {
+            flex: 1;
+            text-align: center;
+        }
+
+        .file-preview-item img {
+            max-width: 100%;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .container {
+                max-width: 500px;
+                margin: 0 auto;
+            }
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            z-index: 3000;
+            box-shadow: var(--shadow);
+            transform: translateX(150%);
+            transition: transform 0.3s ease;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.success {
+            background: var(--success);
+        }
+
+        .notification.error {
+            background: var(--danger);
+        }
+
+        .notification.info {
+            background: var(--info);
+        }
+
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        /* Support Styles */
+        .support-contact {
+            background: var(--light);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .support-contact h4 {
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .support-contact p {
+            margin: 5px 0;
+            color: var(--gray);
+        }
+
+        .support-contact a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        /* Edit Profile Form */
+        .edit-form {
+            margin-top: 20px;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .form-actions .btn {
+            flex: 1;
+        }
+
+        .btn-cancel {
+            background: var(--gray);
+        }
+
+        .btn-cancel:hover {
+            background: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <!-- Notification -->
+    <div id="notification" class="notification"></div>
+
+    <!-- Authentication Section -->
+    <div id="auth-container" class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1>EarnKenya</h1>
+                <p>Make money with simple tasks</p>
+            </div>
+            
+            <div id="login-form">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" class="form-control" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" class="form-control" placeholder="Enter your password">
+                </div>
+                <button class="btn" id="login-btn">Log In</button>
+                
+                <div class="auth-divider">
+                    <span>Or continue with</span>
+                </div>
+                
+                <button class="btn btn-google" id="google-login">
+                    <i class="fab fa-google"></i> Google
+                </button>
+                
+                <div class="auth-footer">
+                    Don't have an account? <a href="#" id="show-signup">Sign Up</a>
+                    <br>
+                    <a href="#" id="forgot-password" style="margin-top: 10px; display: inline-block;">Forgot Password?</a>
+                </div>
+            </div>
+            
+            <div id="signup-form" style="display: none;">
+                <div class="form-group">
+                    <label for="signup-username">Username</label>
+                    <input type="text" id="signup-username" class="form-control" placeholder="Choose a username">
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">Email</label>
+                    <input type="email" id="signup-email" class="form-control" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="signup-phone">Phone Number</label>
+                    <input type="tel" id="signup-phone" class="form-control" placeholder="e.g. 0712345678">
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" class="form-control" placeholder="Create a password">
+                </div>
+                <div class="form-group">
+                    <label for="signup-referral">Referral Code (Optional)</label>
+                    <input type="text" id="signup-referral" class="form-control" placeholder="Enter referral code if any">
+                </div>
+                <button class="btn" id="signup-btn">Sign Up</button>
+                
+                <div class="auth-footer">
+                    Already have an account? <a href="#" id="show-login">Log In</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App Section -->
+    <div id="app-container" class="app-container">
+        <!-- Header -->
+        <div class="header">
+            <h1 id="greeting">Hello, User!</h1>
+            <p>Welcome to your earnings dashboard</p>
+        </div>
+
+        <!-- Dashboard Page -->
+        <div id="dashboard-page" class="page active">
+            <div class="balance-card">
+                <h2>Total Balance</h2>
+                <div class="amount">KSH <span id="total-balance">0</span></div>
+                
+                <div class="action-buttons">
+                    <div class="action-btn primary" id="deposit-btn">
+                        <i class="fas fa-plus"></i> Deposit
+                    </div>
+                    <div class="action-btn" id="withdraw-btn">
+                        <i class="fas fa-money-bill-wave"></i> Withdraw
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section-title">
+                <span>My Earnings</span>
+                <a href="#" data-page="earnings-page">View All</a>
+            </div>
+            
+            <div class="earnings-grid">
+                <div class="earning-item">
+                    <div class="earning-icon">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                    <h3>Watch Videos</h3>
+                    <div class="amount">KSH <span id="video-earnings">0</span></div>
+                </div>
+                <div class="earning-item">
+                    <div class="earning-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3>WhatsApp Status</h3>
+                    <div class="amount">KSH <span id="whatsapp-earnings">0</span></div>
+                </div>
+                <div class="earning-item">
+                    <div class="earning-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Referrals</h3>
+                    <div class="amount">KSH <span id="referral-earnings">0</span></div>
+                </div>
+                <div class="earning-item">
+                    <div class="earning-icon">
+                        <i class="fas fa-calendar-day"></i>
+                    </div>
+                    <h3>Daily Bonus</h3>
+                    <div class="amount">KSH <span id="bonus-earnings">0</span></div>
+                </div>
+            </div>
+            
+            <div class="section-title">
+                <span>Recent Activity</span>
+                <a href="#" data-page="account-page">View All</a>
+            </div>
+            
+            <div class="card" id="recent-activity">
+                <!-- Recent activity will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Earnings Page -->
+        <div id="earnings-page" class="page">
+            <div class="section-title">
+                <span>Earnings Methods</span>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-play-circle"></i> Watch Videos & Earn
+                </div>
+                <p>Watch short videos and earn KSH 5 for each completed view.</p>
+                
+                <div class="task-item">
+                    <div class="task-icon">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div class="task-details">
+                        <h3>Watch Video 1</h3>
+                        <p>Watch this 30-second video to earn KSH 5</p>
+                    </div>
+                    <button class="task-btn" data-task="video" data-task-id="video1" data-amount="5">Watch</button>
+                </div>
+                
+                <div class="task-item">
+                    <div class="task-icon">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div class="task-details">
+                        <h3>Watch Video 2</h3>
+                        <p>Watch this 45-second video to earn KSH 5</p>
+                    </div>
+                    <button class="task-btn" data-task="video" data-task-id="video2" data-amount="5">Watch</button>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <i class="fab fa-whatsapp"></i> WhatsApp Status Earnings
+                </div>
+                <p>Share our promo videos on your WhatsApp status and earn KSH 1 per view.</p>
+                
+                <div class="task-item">
+                    <div class="task-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="task-details">
+                        <h3>Promo Video 1</h3>
+                        <p>Share this video and submit your views</p>
+                    </div>
+                    <button class="task-btn" data-task="whatsapp" data-task-id="whatsapp1" data-amount="1">Share</button>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-calendar-day"></i> Daily Login Bonus
+                </div>
+                <p>Log in daily to claim your KSH 3 bonus.</p>
+                <button class="btn" id="claim-bonus-btn" style="margin-top: 15px;">Claim Bonus</button>
+            </div>
+        </div>
+
+        <!-- Referrals Page -->
+        <div id="referrals-page" class="page">
+            <div class="section-title">
+                <span>Refer & Earn</span>
+            </div>
+            
+            <div class="card">
+                <div class="referral-code">
+                    <h3>Your Referral Code</h3>
+                    <div class="code" id="user-referral-code">EK2547X</div>
+                    <button class="copy-btn" id="copy-referral">
+                        <i class="fas fa-copy"></i> Copy Code
+                    </button>
+                </div>
+                
+                <div class="card-title">Referral Link</div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="referral-link" value="https://earnkenya.co.ke/ref/EK2547X" readonly>
+                    <button class="btn" style="margin-top: 10px;" id="copy-link">
+                        <i class="fas fa-copy"></i> Copy Link
+                    </button>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">Referral Stats</div>
+                <div class="earnings-grid">
+                    <div class="earning-item">
+                        <h3>Total Referrals</h3>
+                        <div class="amount" id="total-referrals">0</div>
+                    </div>
+                    <div class="earning-item">
+                        <h3>Earnings</h3>
+                        <div class="amount">KSH <span id="referral-total">0</span></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">Your Referrals</div>
+                <div id="referrals-list">
+                    <!-- Referrals will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Tasks Page -->
+        <div id="tasks-page" class="page">
+            <div class="section-title">
+                <span>Available Tasks</span>
+            </div>
+            
+            <div class="card">
+                <div class="task-item">
+                    <div class="task-icon">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                    <div class="task-details">
+                        <h3>Watch Video: Product Review</h3>
+                        <p>Watch this 30-second video completely</p>
+                        <div class="task-reward">Reward: KSH 5</div>
+                    </div>
+                    <button class="task-btn" data-task="video" data-task-id="video3" data-amount="5">Start</button>
+                </div>
+                
+                <div class="task-item">
+                    <div class="task-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="task-details">
+                        <h3>Share on WhatsApp Status</h3>
+                        <p>Share our promo and submit screenshot</p>
+                        <div class="task-reward">Reward: KSH 1 per view</div>
+                    </div>
+                    <button class="task-btn" data-task="whatsapp" data-task-id="whatsapp2" data-amount="1">Share</button>
+                </div>
+                
+                <div class="task-item">
+                    <div class="task-icon">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <div class="task-details">
+                        <h3>Share Referral Link</h3>
+                        <p>Share your referral link on social media</p>
+                        <div class="task-reward">Reward: KSH 10 per referral</div>
+                    </div>
+                    <button class="task-btn" data-task="referral" data-task-id="referral1" data-amount="10">Share</button>
+                </div>
+                
+                <div class="task-item">
+                    <div class="task-icon">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <div class="task-details">
+                        <h3>Download App</h3>
+                        <p>Download and install our partner app</p>
+                        <div class="task-reward">Reward: KSH 50</div>
+                    </div>
+                    <button class="task-btn" data-task="download" data-task-id="download1" data-amount="50">Download</button>
+                </div>
+            </div>
+            
+            <div class="section-title">
+                <span>Completed Tasks</span>
+            </div>
+            
+            <div class="card" id="completed-tasks">
+                <!-- Completed tasks will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Account Page -->
+        <div id="account-page" class="page">
+            <div class="card">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="profile-info">
+                        <h2 id="profile-name">User Name</h2>
+                        <p id="profile-email">user@example.com</p>
+                        <p id="profile-phone">0712345678</p>
+                        <div id="kyc-status-badge"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="account-menu">
+                    <div class="menu-item" id="kyc-verification-btn">
+                        <div class="menu-icon">
+                            <i class="fas fa-id-card"></i>
+                        </div>
+                        <div class="menu-details">
+                            <h3>KYC Verification</h3>
+                            <p>Verify your identity to withdraw funds</p>
+                        </div>
+                        <div class="menu-arrow">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item" id="edit-profile-btn">
+                        <div class="menu-icon">
+                            <i class="fas fa-user-edit"></i>
+                        </div>
+                        <div class="menu-details">
+                            <h3>Edit Profile</h3>
+                            <p>Update your personal information</p>
+                        </div>
+                        <div class="menu-arrow">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item" id="change-password-btn">
+                        <div class="menu-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <div class="menu-details">
+                            <h3>Change Password</h3>
+                            <p>Update your account password</p>
+                        </div>
+                        <div class="menu-arrow">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item" id="transaction-history-btn">
+                        <div class="menu-icon">
+                            <i class="fas fa-history"></i>
+                        </div>
+                        <div class="menu-details">
+                            <h3>Transaction History</h3>
+                            <p>View all your transactions</p>
+                        </div>
+                        <div class="menu-arrow">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item" id="support-btn">
+                        <div class="menu-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <div class="menu-details">
+                            <h3>Support</h3>
+                            <p>Get help and support</p>
+                        </div>
+                        <div class="menu-arrow">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item" id="logout-btn">
+                        <div class="menu-icon">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </div>
+                        <div class="menu-details">
+                            <h3>Logout</h3>
+                            <p>Sign out of your account</p>
+                        </div>
+                        <div class="menu-arrow">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav">
+            <a href="#" class="nav-item active" data-page="dashboard-page">
+                <div class="nav-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <span>Dashboard</span>
+            </a>
+            <a href="#" class="nav-item" data-page="earnings-page">
+                <div class="nav-icon">
+                    <i class="fas fa-coins"></i>
+                </div>
+                <span>Earnings</span>
+            </a>
+            <a href="#" class="nav-item" data-page="referrals-page">
+                <div class="nav-icon">
+                    <i class="fas fa-user-friends"></i>
+                </div>
+                <span>Referrals</span>
+            </a>
+            <a href="#" class="nav-item" data-page="tasks-page">
+                <div class="nav-icon">
+                    <i class="fas fa-tasks"></i>
+                </div>
+                <span>Tasks</span>
+            </a>
+            <a href="#" class="nav-item" data-page="account-page">
+                <div class="nav-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <span>Account</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Deposit Modal -->
+    <div class="modal" id="deposit-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Deposit Funds</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="form-group">
+                <label for="deposit-amount">Amount (KSH)</label>
+                <input type="number" id="deposit-amount" class="form-control" placeholder="Minimum KSH 100" min="100">
+            </div>
+            <button class="btn" id="proceed-deposit">Proceed to Pay</button>
+        </div>
+    </div>
+
+    <!-- Withdraw Modal -->
+    <div class="modal" id="withdraw-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Withdraw Funds</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div id="withdraw-kyc-warning" class="kyc-status pending" style="display: none;">
+                <i class="fas fa-exclamation-triangle kyc-icon"></i>
+                <div>You need to complete KYC verification before withdrawing funds.</div>
+            </div>
+            <div class="form-group">
+                <label for="withdraw-amount">Amount (KSH)</label>
+                <input type="number" id="withdraw-amount" class="form-control" placeholder="Enter amount">
+            </div>
+            <div class="form-group">
+                <label for="mpesa-number">M-Pesa Number</label>
+                <input type="tel" id="mpesa-number" class="form-control" placeholder="e.g. 0712345678">
+            </div>
+            <button class="btn" id="proceed-withdraw">Request Withdrawal</button>
+        </div>
+    </div>
+
+    <!-- KYC Verification Modal -->
+    <div class="modal" id="kyc-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>KYC Verification</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            
+            <div id="kyc-status-info">
+                <!-- KYC status will be displayed here -->
+            </div>
+            
+            <div id="kyc-upload-form">
+                <p>To verify your identity, please upload clear photos of your ID card (both front and back).</p>
+                
+                <div class="file-upload" id="front-id-upload">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Upload Front of ID Card</p>
+                    <input type="file" id="front-id-input" accept="image/*" style="display: none;">
+                </div>
+                
+                <div class="file-preview" id="front-id-preview">
+                    <!-- Front ID preview will appear here -->
+                </div>
+                
+                <div class="file-upload" id="back-id-upload">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Upload Back of ID Card</p>
+                    <input type="file" id="back-id-input" accept="image/*" style="display: none;">
+                </div>
+                
+                <div class="file-preview" id="back-id-preview">
+                    <!-- Back ID preview will appear here -->
+                </div>
+                
+                <button class="btn" id="submit-kyc" style="margin-top: 20px;">Submit for Verification</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div class="modal" id="edit-profile-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Profile</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="form-group">
+                <label for="edit-username">Username</label>
+                <input type="text" id="edit-username" class="form-control" placeholder="Enter your username">
+            </div>
+            <div class="form-group">
+                <label for="edit-phone">Phone Number</label>
+                <input type="tel" id="edit-phone" class="form-control" placeholder="e.g. 0712345678">
+            </div>
+            <div class="form-actions">
+                <button class="btn btn-cancel" id="cancel-edit">Cancel</button>
+                <button class="btn" id="save-profile">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Change Password Modal -->
+    <div class="modal" id="change-password-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Change Password</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="form-group">
+                <label for="current-password">Current Password</label>
+                <input type="password" id="current-password" class="form-control" placeholder="Enter current password">
+            </div>
+            <div class="form-group">
+                <label for="new-password">New Password</label>
+                <input type="password" id="new-password" class="form-control" placeholder="Enter new password">
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">Confirm New Password</label>
+                <input type="password" id="confirm-password" class="form-control" placeholder="Confirm new password">
+            </div>
+            <div class="form-actions">
+                <button class="btn btn-cancel" id="cancel-password">Cancel</button>
+                <button class="btn" id="update-password">Update Password</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Transaction History Modal -->
+    <div class="modal" id="transaction-history-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Transaction History</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div id="transaction-list">
+                <!-- Transactions will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Support Modal -->
+    <div class="modal" id="support-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Support</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="support-contact">
+                <h4>Contact Support</h4>
+                <p><i class="fas fa-envelope"></i> Email: ogorofelix276@gmail.com</p>
+                <p><i class="fab fa-whatsapp"></i> WhatsApp: 0716625790</p>
+                <p><i class="fas fa-phone"></i> Phone: 0716625790</p>
+            </div>
+            <div class="form-group">
+                <label for="support-subject">Subject</label>
+                <input type="text" id="support-subject" class="form-control" placeholder="Enter subject">
+            </div>
+            <div class="form-group">
+                <label for="support-message">Message</label>
+                <textarea id="support-message" class="form-control" rows="5" placeholder="Describe your issue"></textarea>
+            </div>
+            <button class="btn" id="send-support">Send Message</button>
+        </div>
+    </div>
+
+    <script>
+        // EmailJS Configuration
+        const EMAILJS_CONFIG = {
+            userId: 'YQ5Y7crfA4C_Ucdl9',
+            serviceId: 'service_yt1lxx9',
+            templateIds: {
+                welcome: 'template_yst9505',
+                deposit: 'template_9l48qxm',
+                support: 'template_support_request'
+            }
+        };
+
+        // Initialize EmailJS
+        if (typeof emailjs !== 'undefined') {
+            emailjs.init(EMAILJS_CONFIG.userId);
+        }
+
+        // Supabase Configuration
+        const SUPABASE_URL = 'https://sbxluupdicbpqbbvqmuj.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNieGx1dXBkaWNicHFiYnZxbXVqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMyNzcyNjAsImV4cCI6MjA3ODg1MzI2MH0.ZO6UKu3z2b00rcgMRbD34J-NsOrljhFX9qiFCWz__QA';
+
+        // Initialize Supabase
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // Global Variables
+        let currentUser = null;
+        let userProfile = null;
+
+        // DOM Elements
+        const authContainer = document.getElementById('auth-container');
+        const appContainer = document.getElementById('app-container');
+        const loginForm = document.getElementById('login-form');
+        const signupForm = document.getElementById('signup-form');
+        const showSignup = document.getElementById('show-signup');
+        const showLogin = document.getElementById('show-login');
+        const loginBtn = document.getElementById('login-btn');
+        const signupBtn = document.getElementById('signup-btn');
+        const googleLogin = document.getElementById('google-login');
+        const logoutBtn = document.getElementById('logout-btn');
+        const navItems = document.querySelectorAll('.nav-item');
+        const pages = document.querySelectorAll('.page');
+        const depositBtn = document.getElementById('deposit-btn');
+        const withdrawBtn = document.getElementById('withdraw-btn');
+        const depositModal = document.getElementById('deposit-modal');
+        const withdrawModal = document.getElementById('withdraw-modal');
+        const kycModal = document.getElementById('kyc-modal');
+        const editProfileModal = document.getElementById('edit-profile-modal');
+        const changePasswordModal = document.getElementById('change-password-modal');
+        const transactionHistoryModal = document.getElementById('transaction-history-modal');
+        const supportModal = document.getElementById('support-modal');
+        const closeModals = document.querySelectorAll('.close-modal');
+        const proceedDeposit = document.getElementById('proceed-deposit');
+        const proceedWithdraw = document.getElementById('proceed-withdraw');
+        const copyReferral = document.getElementById('copy-referral');
+        const copyLink = document.getElementById('copy-link');
+        const claimBonusBtn = document.getElementById('claim-bonus-btn');
+        const kycVerificationBtn = document.getElementById('kyc-verification-btn');
+        const editProfileBtn = document.getElementById('edit-profile-btn');
+        const changePasswordBtn = document.getElementById('change-password-btn');
+        const transactionHistoryBtn = document.getElementById('transaction-history-btn');
+        const supportBtn = document.getElementById('support-btn');
+        const frontIdUpload = document.getElementById('front-id-upload');
+        const backIdUpload = document.getElementById('back-id-upload');
+        const frontIdInput = document.getElementById('front-id-input');
+        const backIdInput = document.getElementById('back-id-input');
+        const submitKyc = document.getElementById('submit-kyc');
+        const saveProfile = document.getElementById('save-profile');
+        const cancelEdit = document.getElementById('cancel-edit');
+        const updatePassword = document.getElementById('update-password');
+        const cancelPassword = document.getElementById('cancel-password');
+        const sendSupport = document.getElementById('send-support');
+        const notification = document.getElementById('notification');
+        const forgotPassword = document.getElementById('forgot-password');
+
+        // Show Notification
+        function showNotification(message, type = 'info') {
+            if (!notification) return;
+            
+            notification.textContent = message;
+            notification.className = `notification ${type} show`;
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Set Loading State
+        function setLoading(element, isLoading) {
+            if (!element) return;
+            
+            if (isLoading) {
+                element.classList.add('loading');
+                element.disabled = true;
+            } else {
+                element.classList.remove('loading');
+                element.disabled = false;
+            }
+        }
+
+        // Generate Referral Code
+        function generateReferralCode() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let code = 'EK';
+            for (let i = 0; i < 5; i++) {
+                code += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return code;
+        }
+
+        // Initialize Database Tables (if they don't exist)
+        async function initializeDatabase() {
+            try {
+                // This is a fallback - in production, you should create these tables manually in Supabase
+                console.log('Database initialization would happen here');
+            } catch (error) {
+                console.log('Database already initialized or error:', error);
+            }
+        }
+
+        // Show Signup Form
+        if (showSignup) {
+            showSignup.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (loginForm) loginForm.style.display = 'none';
+                if (signupForm) signupForm.style.display = 'block';
+            });
+        }
+
+        // Show Login Form
+        if (showLogin) {
+            showLogin.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (signupForm) signupForm.style.display = 'none';
+                if (loginForm) loginForm.style.display = 'block';
+            });
+        }
+
+        // Forgot Password
+        if (forgotPassword) {
+            forgotPassword.addEventListener('click', async (e) => {
+                e.preventDefault();
+                const email = prompt('Enter your email to reset password:');
+                if (email) {
+                    try {
+                        const { error } = await supabase.auth.resetPasswordForEmail(email, {
+                            redirectTo: window.location.href,
+                        });
+                        
+                        if (error) throw error;
+                        
+                        showNotification('Password reset email sent! Check your inbox.', 'success');
+                    } catch (error) {
+                        console.error('Error sending password reset:', error);
+                        showNotification('Error sending reset email. Please try again.', 'error');
+                    }
+                }
+            });
+        }
+
+        // Signup Function
+        if (signupBtn) {
+            signupBtn.addEventListener('click', async () => {
+                const username = document.getElementById('signup-username')?.value;
+                const email = document.getElementById('signup-email')?.value;
+                const phone = document.getElementById('signup-phone')?.value;
+                const password = document.getElementById('signup-password')?.value;
+                const referralCode = document.getElementById('signup-referral')?.value;
+                
+                if (!username || !email || !phone || !password) {
+                    showNotification('Please fill all fields', 'error');
+                    return;
+                }
+                
+                setLoading(signupBtn, true);
+                
+                try {
+                    // Create user in Supabase Auth
+                    const { data: authData, error: authError } = await supabase.auth.signUp({
+                        email,
+                        password,
+                        options: {
+                            data: {
+                                username,
+                                phone
+                            }
+                        }
+                    });
+                    
+                    if (authError) throw authError;
+                    
+                    if (!authData.user) {
+                        throw new Error('User creation failed');
+                    }
+                    
+                    // Generate unique referral code for the new user
+                    const userReferralCode = generateReferralCode();
+                    
+                    // Create user profile in database with error handling
+                    let profileError = null;
+                    try {
+                        const { error } = await supabase
+                            .from('profiles')
+                            .insert([
+                                {
+                                    id: authData.user.id,
+                                    username,
+                                    email,
+                                    phone,
+                                    referral_code: userReferralCode,
+                                    referred_by: referralCode || null,
+                                    total_earnings: 0,
+                                    video_earnings: 0,
+                                    whatsapp_earnings: 0,
+                                    referral_earnings: 0,
+                                    bonus_earnings: 0,
+                                    balance: 0,
+                                    kyc_verified: false,
+                                    kyc_status: 'not_submitted'
+                                }
+                            ]);
+                        
+                        profileError = error;
+                    } catch (dbError) {
+                        console.log('Profiles table might not exist, using localStorage fallback');
+                        // Fallback to localStorage
+                        const userData = {
+                            id: authData.user.id,
+                            username,
+                            email,
+                            phone,
+                            referral_code: userReferralCode,
+                            referred_by: referralCode || null,
+                            total_earnings: 0,
+                            video_earnings: 0,
+                            whatsapp_earnings: 0,
+                            referral_earnings: 0,
+                            bonus_earnings: 0,
+                            balance: 0,
+                            kyc_verified: false,
+                            kyc_status: 'not_submitted'
+                        };
+                        localStorage.setItem(`user_${authData.user.id}`, JSON.stringify(userData));
+                    }
+                    
+                    // If referred by someone, add referral bonus (simplified)
+                    if (referralCode) {
+                        showNotification(`Referral code ${referralCode} applied!`, 'success');
+                    }
+                    
+                    showNotification('Account created successfully! Please check your email to verify your account.', 'success');
+                    
+                    // Switch to login form
+                    if (signupForm) signupForm.style.display = 'none';
+                    if (loginForm) loginForm.style.display = 'block';
+                    
+                } catch (error) {
+                    console.error('Signup error:', error);
+                    showNotification(error.message || 'Signup failed. Please try again.', 'error');
+                } finally {
+                    setLoading(signupBtn, false);
+                }
+            });
+        }
+
+        // Login Function
+        if (loginBtn) {
+            loginBtn.addEventListener('click', async () => {
+                const email = document.getElementById('login-email')?.value;
+                const password = document.getElementById('login-password')?.value;
+                
+                if (!email || !password) {
+                    showNotification('Please enter both email and password', 'error');
+                    return;
+                }
+                
+                setLoading(loginBtn, true);
+                await loginUser(email, password);
+                setLoading(loginBtn, false);
+            });
+        }
+
+        // Login Helper Function
+        async function loginUser(email, password) {
+            try {
+                const { data, error } = await supabase.auth.signInWithPassword({
+                    email,
+                    password
+                });
+                
+                if (error) throw error;
+                
+                if (!data.user) {
+                    throw new Error('Login failed - no user data returned');
+                }
+                
+                currentUser = data.user;
+                await loadUserProfile();
+                
+                // Check for daily login bonus
+                await checkDailyBonus();
+                
+                if (authContainer) authContainer.style.display = 'none';
+                if (appContainer) appContainer.style.display = 'block';
+                
+                showNotification('Login successful!', 'success');
+                
+            } catch (error) {
+                console.error('Login error:', error);
+                showNotification(error.message || 'Login failed. Please check your credentials.', 'error');
+            }
+        }
+
+        // Google Login - Fixed with proper configuration
+        if (googleLogin) {
+            googleLogin.addEventListener('click', async () => {
+                try {
+                    // First, you need to enable Google OAuth in your Supabase dashboard
+                    // Go to Authentication > Settings > Auth Providers > Google and enable it
+                    const { data, error } = await supabase.auth.signInWithOAuth({
+                        provider: 'google',
+                        options: {
+                            redirectTo: window.location.origin
+                        }
+                    });
+                    
+                    if (error) throw error;
+                    
+                } catch (error) {
+                    console.error('Google login error:', error);
+                    showNotification('Google login failed. Please enable Google OAuth in Supabase dashboard or use email login.', 'error');
+                }
+            });
+        }
+
+        // Load User Profile with fallback
+        async function loadUserProfile() {
+            if (!currentUser) return;
+            
+            try {
+                // Try to load from Supabase
+                const { data, error } = await supabase
+                    .from('profiles')
+                    .select('*')
+                    .eq('id', currentUser.id)
+                    .single();
+                
+                if (error) throw error;
+                
+                userProfile = data;
+                
+            } catch (error) {
+                console.log('Loading from Supabase failed, using localStorage fallback:', error);
+                // Fallback to localStorage
+                const storedData = localStorage.getItem(`user_${currentUser.id}`);
+                if (storedData) {
+                    userProfile = JSON.parse(storedData);
+                } else {
+                    // Create default profile
+                    userProfile = {
+                        id: currentUser.id,
+                        username: currentUser.user_metadata?.username || 'User',
+                        email: currentUser.email,
+                        phone: currentUser.user_metadata?.phone || 'Not set',
+                        referral_code: generateReferralCode(),
+                        balance: 0,
+                        video_earnings: 0,
+                        whatsapp_earnings: 0,
+                        referral_earnings: 0,
+                        bonus_earnings: 0,
+                        kyc_verified: false,
+                        kyc_status: 'not_submitted'
+                    };
+                    localStorage.setItem(`user_${currentUser.id}`, JSON.stringify(userProfile));
+                }
+            }
+            
+            // Update UI with user data
+            updateUserInterface();
+        }
+
+        // Update User Interface
+        function updateUserInterface() {
+            if (!userProfile) return;
+            
+            const greeting = document.getElementById('greeting');
+            const profileName = document.getElementById('profile-name');
+            const profileEmail = document.getElementById('profile-email');
+            const profilePhone = document.getElementById('profile-phone');
+            const userReferralCode = document.getElementById('user-referral-code');
+            const referralLink = document.getElementById('referral-link');
+            
+            if (greeting) greeting.textContent = `Hello, ${userProfile.username}!`;
+            if (profileName) profileName.textContent = userProfile.username;
+            if (profileEmail) profileEmail.textContent = userProfile.email;
+            if (profilePhone) profilePhone.textContent = userProfile.phone;
+            if (userReferralCode) userReferralCode.textContent = userProfile.referral_code;
+            if (referralLink) referralLink.value = `https://earnkenya.co.ke/ref/${userProfile.referral_code}`;
+            
+            // Update earnings
+            document.getElementById('total-balance').textContent = userProfile.balance || 0;
+            document.getElementById('video-earnings').textContent = userProfile.video_earnings || 0;
+            document.getElementById('whatsapp-earnings').textContent = userProfile.whatsapp_earnings || 0;
+            document.getElementById('referral-earnings').textContent = userProfile.referral_earnings || 0;
+            document.getElementById('bonus-earnings').textContent = userProfile.bonus_earnings || 0;
+            
+            // Load additional data
+            loadReferralsCount();
+            loadRecentActivity();
+            loadCompletedTasks();
+            updateKYCStatus(userProfile.kyc_status);
+        }
+
+        // Load Referrals Count (simplified)
+        async function loadReferralsCount() {
+            try {
+                // For demo purposes, we'll use a simple count
+                const referralsCount = Math.floor(Math.random() * 5); // Random number for demo
+                document.getElementById('total-referrals').textContent = referralsCount;
+                document.getElementById('referral-total').textContent = userProfile.referral_earnings || 0;
+                
+                // Load referrals list
+                let referralsHtml = '';
+                if (referralsCount > 0) {
+                    for (let i = 0; i < referralsCount; i++) {
+                        referralsHtml += `
+                            <div class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="activity-details">
+                                    <h4>Referred User ${i + 1}</h4>
+                                    <p>Joined recently</p>
+                                </div>
+                                <div class="activity-amount">+KSH 10</div>
+                            </div>
+                        `;
+                    }
+                } else {
+                    referralsHtml = '<p>No referrals yet. Share your referral link to earn KSH 10 per referral!</p>';
+                }
+                
+                document.getElementById('referrals-list').innerHTML = referralsHtml;
+                
+            } catch (error) {
+                console.error('Error loading referrals:', error);
+            }
+        }
+
+        // Load Recent Activity (simplified)
+        async function loadRecentActivity() {
+            try {
+                // For demo, create some sample activity
+                const sampleActivities = [
+                    { type: 'video', description: 'Watched video', amount: 5, date: new Date() },
+                    { type: 'whatsapp', description: 'Shared on WhatsApp', amount: 3, date: new Date(Date.now() - 86400000) },
+                    { type: 'bonus', description: 'Daily bonus', amount: 3, date: new Date(Date.now() - 172800000) }
+                ];
+                
+                let activityHtml = '';
+                for (const activity of sampleActivities) {
+                    const icon = getTransactionIcon(activity.type);
+                    const date = activity.date.toLocaleDateString();
+                    
+                    activityHtml += `
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="${icon}"></i>
+                            </div>
+                            <div class="activity-details">
+                                <h4>${activity.description}</h4>
+                                <p>${date}</p>
+                            </div>
+                            <div class="activity-amount">+KSH ${activity.amount}</div>
+                        </div>
+                    `;
+                }
+                
+                document.getElementById('recent-activity').innerHTML = activityHtml;
+                
+            } catch (error) {
+                console.error('Error loading activity:', error);
+                document.getElementById('recent-activity').innerHTML = '<p>No recent activity</p>';
+            }
+        }
+
+        // Load Completed Tasks (simplified)
+        async function loadCompletedTasks() {
+            try {
+                // For demo, use the same sample data
+                const sampleTasks = [
+                    { type: 'video', description: 'Watched Product Review', amount: 5, date: new Date() },
+                    { type: 'whatsapp', description: 'Shared promo video', amount: 3, date: new Date(Date.now() - 86400000) }
+                ];
+                
+                let tasksHtml = '';
+                if (sampleTasks.length > 0) {
+                    for (const task of sampleTasks) {
+                        const icon = getTransactionIcon(task.type);
+                        const date = task.date.toLocaleDateString();
+                        
+                        tasksHtml += `
+                            <div class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="${icon}"></i>
+                                </div>
+                                <div class="activity-details">
+                                    <h4>${task.description}</h4>
+                                    <p>Completed on ${date}</p>
+                                </div>
+                                <div class="activity-amount">+KSH ${task.amount}</div>
+                            </div>
+                        `;
+                    }
+                } else {
+                    tasksHtml = '<p>No completed tasks yet</p>';
+                }
+                
+                document.getElementById('completed-tasks').innerHTML = tasksHtml;
+                
+            } catch (error) {
+                console.error('Error loading completed tasks:', error);
+            }
+        }
+
+        // Get Transaction Icon
+        function getTransactionIcon(type) {
+            switch (type) {
+                case 'video': return 'fas fa-play-circle';
+                case 'whatsapp': return 'fab fa-whatsapp';
+                case 'referral_bonus': return 'fas fa-user-plus';
+                case 'bonus': return 'fas fa-calendar-day';
+                case 'deposit': return 'fas fa-plus';
+                case 'withdrawal': return 'fas fa-money-bill-wave';
+                default: return 'fas fa-coins';
+            }
+        }
+
+        // Check Daily Bonus
+        async function checkDailyBonus() {
+            try {
+                const today = new Date().toDateString();
+                const lastBonusDate = localStorage.getItem(`lastBonusDate_${currentUser.id}`);
+                
+                if (lastBonusDate !== today) {
+                    // Enable bonus claim
+                    if (claimBonusBtn) {
+                        claimBonusBtn.disabled = false;
+                        claimBonusBtn.textContent = 'Claim Bonus';
+                    }
+                } else {
+                    // Bonus already claimed today
+                    if (claimBonusBtn) {
+                        claimBonusBtn.disabled = true;
+                        claimBonusBtn.textContent = 'Bonus Already Claimed';
+                    }
+                }
+            } catch (error) {
+                console.error('Error checking daily bonus:', error);
+            }
+        }
+
+        // Claim Daily Bonus
+        if (claimBonusBtn) {
+            claimBonusBtn.addEventListener('click', async () => {
+                try {
+                    const bonusAmount = 3; // KSH 3 daily bonus
+                    
+                    // Update user balance and bonus earnings
+                    userProfile.balance = (userProfile.balance || 0) + bonusAmount;
+                    userProfile.bonus_earnings = (userProfile.bonus_earnings || 0) + bonusAmount;
+                    
+                    // Save to localStorage as fallback
+                    localStorage.setItem(`user_${currentUser.id}`, JSON.stringify(userProfile));
+                    
+                    // Try to update Supabase if possible
+                    try {
+                        await supabase
+                            .from('profiles')
+                            .update({
+                                balance: userProfile.balance,
+                                bonus_earnings: userProfile.bonus_earnings
+                            })
+                            .eq('id', currentUser.id);
+                    } catch (dbError) {
+                        console.log('Supabase update failed, using localStorage only');
+                    }
+                    
+                    // Update local storage
+                    const today = new Date().toDateString();
+                    localStorage.setItem(`lastBonusDate_${currentUser.id}`, today);
+                    
+                    // Update UI
+                    document.getElementById('total-balance').textContent = userProfile.balance;
+                    document.getElementById('bonus-earnings').textContent = userProfile.bonus_earnings;
+                    
+                    // Disable button
+                    claimBonusBtn.disabled = true;
+                    claimBonusBtn.textContent = 'Bonus Already Claimed';
+                    
+                    showNotification(`Daily bonus of KSH ${bonusAmount} claimed!`, 'success');
+                    
+                    // Reload activity
+                    loadRecentActivity();
+                    loadCompletedTasks();
+                    
+                } catch (error) {
+                    console.error('Error claiming bonus:', error);
+                    showNotification('Error claiming bonus. Please try again.', 'error');
+                }
+            });
+        }
+
+        // Navigation
+        navItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Remove active class from all nav items
+                navItems.forEach(nav => nav.classList.remove('active'));
+                
+                // Add active class to clicked nav item
+                item.classList.add('active');
+                
+                // Hide all pages
+                pages.forEach(page => page.classList.remove('active'));
+                
+                // Show selected page
+                const pageId = item.getAttribute('data-page');
+                const targetPage = document.getElementById(pageId);
+                if (targetPage) {
+                    targetPage.classList.add('active');
+                }
+            });
+        });
+
+        // View All Links
+        document.querySelectorAll('[data-page]').forEach(link => {
+            if (link.hasAttribute('data-page') && link.getAttribute('href') === '#') {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const pageId = link.getAttribute('data-page');
+                    
+                    // Update navigation
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    const targetNav = document.querySelector(`[data-page="${pageId}"]`);
+                    if (targetNav) {
+                        targetNav.classList.add('active');
+                    }
+                    
+                    // Show page
+                    pages.forEach(page => page.classList.remove('active'));
+                    const targetPage = document.getElementById(pageId);
+                    if (targetPage) {
+                        targetPage.classList.add('active');
+                    }
+                });
+            }
+        });
+
+        // Deposit Modal
+        if (depositBtn) {
+            depositBtn.addEventListener('click', () => {
+                if (depositModal) depositModal.classList.add('active');
+            });
+        }
+
+        // Withdraw Modal
+        if (withdrawBtn) {
+            withdrawBtn.addEventListener('click', () => {
+                if (!userProfile.kyc_verified) {
+                    const kycWarning = document.getElementById('withdraw-kyc-warning');
+                    if (kycWarning) kycWarning.style.display = 'flex';
+                } else {
+                    const kycWarning = document.getElementById('withdraw-kyc-warning');
+                    if (kycWarning) kycWarning.style.display = 'none';
+                }
+                if (withdrawModal) withdrawModal.classList.add('active');
+            });
+        }
+
+        // KYC Verification Modal
+        if (kycVerificationBtn) {
+            kycVerificationBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                loadKYCStatus();
+                if (kycModal) kycModal.classList.add('active');
+            });
+        }
+
+        // Edit Profile Modal
+        if (editProfileBtn) {
+            editProfileBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById('edit-username').value = userProfile.username;
+                document.getElementById('edit-phone').value = userProfile.phone;
+                if (editProfileModal) editProfileModal.classList.add('active');
+            });
+        }
+
+        // Change Password Modal
+        if (changePasswordBtn) {
+            changePasswordBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (changePasswordModal) changePasswordModal.classList.add('active');
+            });
+        }
+
+        // Transaction History Modal
+        if (transactionHistoryBtn) {
+            transactionHistoryBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                loadTransactionHistory();
+                if (transactionHistoryModal) transactionHistoryModal.classList.add('active');
+            });
+        }
+
+        // Support Modal
+        if (supportBtn) {
+            supportBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (supportModal) supportModal.classList.add('active');
+            });
+        }
+
+        // Close Modals
+        closeModals.forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (depositModal) depositModal.classList.remove('active');
+                if (withdrawModal) withdrawModal.classList.remove('active');
+                if (kycModal) kycModal.classList.remove('active');
+                if (editProfileModal) editProfileModal.classList.remove('active');
+                if (changePasswordModal) changePasswordModal.classList.remove('active');
+                if (transactionHistoryModal) transactionHistoryModal.classList.remove('active');
+                if (supportModal) supportModal.classList.remove('active');
+            });
+        });
+
+        // Cancel Edit Profile
+        if (cancelEdit) {
+            cancelEdit.addEventListener('click', () => {
+                if (editProfileModal) editProfileModal.classList.remove('active');
+            });
+        }
+
+        // Cancel Password Change
+        if (cancelPassword) {
+            cancelPassword.addEventListener('click', () => {
+                if (changePasswordModal) changePasswordModal.classList.remove('active');
+            });
+        }
+
+        // Close modals when clicking outside
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                e.target.classList.remove('active');
+            }
+        });
+
+        // Save Profile
+        if (saveProfile) {
+            saveProfile.addEventListener('click', async () => {
+                const username = document.getElementById('edit-username').value;
+                const phone = document.getElementById('edit-phone').value;
+                
+                if (!username || !phone) {
+                    showNotification('Please fill all fields', 'error');
+                    return;
+                }
+                
+                setLoading(saveProfile, true);
+                
+                try {
+                    userProfile.username = username;
+                    userProfile.phone = phone;
+                    
+                    // Save to localStorage
+                    localStorage.setItem(`user_${currentUser.id}`, JSON.stringify(userProfile));
+                    
+                    // Try to update Supabase
+                    try {
+                        await supabase
+                            .from('profiles')
+                            .update({
+                                username: username,
+                                phone: phone
+                            })
+                            .eq('id', currentUser.id);
+                    } catch (dbError) {
+                        console.log('Supabase update failed, using localStorage');
+                    }
+                    
+                    // Update UI
+                    updateUserInterface();
+                    
+                    if (editProfileModal) editProfileModal.classList.remove('active');
+                    showNotification('Profile updated successfully!', 'success');
+                    
+                } catch (error) {
+                    console.error('Error updating profile:', error);
+                    showNotification('Error updating profile. Please try again.', 'error');
+                } finally {
+                    setLoading(saveProfile, false);
+                }
+            });
+        }
+
+        // Update Password
+        if (updatePassword) {
+            updatePassword.addEventListener('click', async () => {
+                const currentPassword = document.getElementById('current-password').value;
+                const newPassword = document.getElementById('new-password').value;
+                const confirmPassword = document.getElementById('confirm-password').value;
+                
+                if (!currentPassword || !newPassword || !confirmPassword) {
+                    showNotification('Please fill all fields', 'error');
+                    return;
+                }
+                
+                if (newPassword !== confirmPassword) {
+                    showNotification('New passwords do not match', 'error');
+                    return;
+                }
+                
+                setLoading(updatePassword, true);
+                
+                try {
+                    const { error } = await supabase.auth.updateUser({
+                        password: newPassword
+                    });
+                    
+                    if (error) throw error;
+                    
+                    if (changePasswordModal) changePasswordModal.classList.remove('active');
+                    showNotification('Password updated successfully!', 'success');
+                    
+                    // Clear password fields
+                    document.getElementById('current-password').value = '';
+                    document.getElementById('new-password').value = '';
+                    document.getElementById('confirm-password').value = '';
+                    
+                } catch (error) {
+                    console.error('Error updating password:', error);
+                    showNotification('Error updating password. Please try again.', 'error');
+                } finally {
+                    setLoading(updatePassword, false);
+                }
+            });
+        }
+
+        // Send Support Message
+        if (sendSupport) {
+            sendSupport.addEventListener('click', async () => {
+                const subject = document.getElementById('support-subject').value;
+                const message = document.getElementById('support-message').value;
+                
+                if (!subject || !message) {
+                    showNotification('Please fill all fields', 'error');
+                    return;
+                }
+                
+                setLoading(sendSupport, true);
+                
+                try {
+                    // Send email using EmailJS
+                    if (typeof emailjs !== 'undefined') {
+                        const templateParams = {
+                            to_email: 'ogorofelix276@gmail.com',
+                            from_name: userProfile.username,
+                            from_email: userProfile.email,
+                            subject: subject,
+                            message: message,
+                            user_id: currentUser.id
+                        };
+
+                        await emailjs.send(
+                            EMAILJS_CONFIG.serviceId,
+                            EMAILJS_CONFIG.templateIds.support,
+                            templateParams
+                        );
+                    }
+                    
+                    if (supportModal) supportModal.classList.remove('active');
+                    showNotification('Support message sent successfully! We will get back to you soon.', 'success');
+                    
+                    // Clear support fields
+                    document.getElementById('support-subject').value = '';
+                    document.getElementById('support-message').value = '';
+                    
+                } catch (error) {
+                    console.error('Error sending support message:', error);
+                    showNotification('Error sending support message. Please try again or contact us directly.', 'error');
+                } finally {
+                    setLoading(sendSupport, false);
+                }
+            });
+        }
+
+        // Load Transaction History
+        async function loadTransactionHistory() {
+            try {
+                const transactionList = document.getElementById('transaction-list');
+                if (!transactionList) return;
+                
+                // For demo, create sample transactions
+                const sampleTransactions = [
+                    { type: 'deposit', description: 'Deposit via M-Pesa', amount: 100, status: 'completed', created_at: new Date() },
+                    { type: 'withdrawal', description: 'Withdrawal to 0712345678', amount: -50, status: 'pending', created_at: new Date(Date.now() - 86400000) },
+                    { type: 'video', description: 'Watched video task', amount: 5, status: 'completed', created_at: new Date(Date.now() - 172800000) },
+                    { type: 'bonus', description: 'Daily login bonus', amount: 3, status: 'completed', created_at: new Date(Date.now() - 259200000) }
+                ];
+                
+                let transactionsHtml = '';
+                if (sampleTransactions.length > 0) {
+                    for (const transaction of sampleTransactions) {
+                        const icon = getTransactionIcon(transaction.type);
+                        const date = new Date(transaction.created_at).toLocaleDateString();
+                        const amountClass = transaction.amount > 0 ? 'activity-amount' : 'activity-amount negative';
+                        
+                        transactionsHtml += `
+                            <div class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="${icon}"></i>
+                                </div>
+                                <div class="activity-details">
+                                    <h4>${transaction.description}</h4>
+                                    <p>${date} • ${transaction.status}</p>
+                                </div>
+                                <div class="${amountClass}">${transaction.amount > 0 ? '+' : ''}KSH ${Math.abs(transaction.amount)}</div>
+                            </div>
+                        `;
+                    }
+                } else {
+                    transactionsHtml = '<p>No transactions yet</p>';
+                }
+                
+                transactionList.innerHTML = transactionsHtml;
+                
+            } catch (error) {
+                console.error('Error loading transaction history:', error);
+            }
+        }
+
+        // Proceed with Deposit
+        if (proceedDeposit) {
+            proceedDeposit.addEventListener('click', async () => {
+                const amountInput = document.getElementById('deposit-amount');
+                const amount = amountInput ? parseInt(amountInput.value) : 0;
+                
+                if (amount && amount >= 100) {
+                    setLoading(proceedDeposit, true);
+                    
+                    try {
+                        // Update user balance
+                        userProfile.balance = (userProfile.balance || 0) + amount;
+                        
+                        // Save to localStorage
+                        localStorage.setItem(`user_${currentUser.id}`, JSON.stringify(userProfile));
+                        
+                        // Try to update Supabase
+                        try {
+                            await supabase
+                                .from('profiles')
+                                .update({
+                                    balance: userProfile.balance
+                                })
+                                .eq('id', currentUser.id);
+                        } catch (dbError) {
+                            console.log('Supabase update failed, using localStorage');
+                        }
+                        
+                        // Update UI
+                        document.getElementById('total-balance').textContent = userProfile.balance;
+                        
+                        if (depositModal) depositModal.classList.remove('active');
+                        if (amountInput) amountInput.value = '';
+                        
+                        showNotification(`Deposit of KSH ${amount} successful!`, 'success');
+                        
+                        // Reload activity
+                        loadRecentActivity();
+                        
+                    } catch (error) {
+                        console.error('Error processing deposit:', error);
+                        showNotification('Error processing deposit. Please try again.', 'error');
+                    } finally {
+                        setLoading(proceedDeposit, false);
+                    }
+                } else {
+                    showNotification('Please enter a valid amount (minimum KSH 100)', 'error');
+                }
+            });
+        }
+
+        // Proceed with Withdrawal
+        if (proceedWithdraw) {
+            proceedWithdraw.addEventListener('click', async () => {
+                const amountInput = document.getElementById('withdraw-amount');
+                const mpesaInput = document.getElementById('mpesa-number');
+                const amount = amountInput ? parseInt(amountInput.value) : 0;
+                const mpesa = mpesaInput ? mpesaInput.value : '';
+                
+                if (!amount || !mpesa) {
+                    showNotification('Please enter both amount and M-Pesa number', 'error');
+                    return;
+                }
+                
+                if (amount > userProfile.balance) {
+                    showNotification('Insufficient balance', 'error');
+                    return;
+                }
+                
+                if (!userProfile.kyc_verified) {
+                    showNotification('KYC verification required for withdrawals', 'error');
+                    return;
+                }
+                
+                setLoading(proceedWithdraw, true);
+                
+                try {
+                    // Update user balance
+                    userProfile.balance = (userProfile.balance || 0) - amount;
+                    
+                    // Save to localStorage
+                    localStorage.setItem(`user_${currentUser.id}`, JSON.stringify(userProfile));
+                    
+                    // Try to update Supabase
+                    try {
+                        await supabase
+                            .from('profiles')
+                            .update({
+                                balance: userProfile.balance
+                            })
+                            .eq('id', currentUser.id);
+                    } catch (dbError) {
+                        console.log('Supabase update failed, using localStorage');
+                    }
+                    
+                    // Update UI
+                    document.getElementById('total-balance').textContent = userProfile.balance;
+                    
+                    if (withdrawModal) withdrawModal.classList.remove('active');
+                    if (amountInput) amountInput.value = '';
+                    if (mpesaInput) mpesaInput.value = '';
+                    
+                    showNotification(`Withdrawal request of KSH ${amount} submitted!`, 'success');
+                    
+                    // Reload activity
+                    loadRecentActivity();
+                    
+                } catch (error) {
+                    console.error('Error processing withdrawal:', error);
+                    showNotification('Error processing withdrawal. Please try again.', 'error');
+                } finally {
+                    setLoading(proceedWithdraw, false);
+                }
+            });
+        }
+
+        // Copy Referral Code
+        if (copyReferral) {
+            copyReferral.addEventListener('click', () => {
+                const codeElement = document.getElementById('user-referral-code');
+                const code = codeElement ? codeElement.textContent : '';
+                if (code && navigator.clipboard) {
+                    navigator.clipboard.writeText(code).then(() => {
+                        showNotification('Referral code copied to clipboard!', 'success');
+                    }).catch(() => {
+                        // Fallback for older browsers
+                        const textArea = document.createElement('textarea');
+                        textArea.value = code;
+                        document.body.appendChild(textArea);
+                        textArea.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(textArea);
+                        showNotification('Referral code copied to clipboard!', 'success');
+                    });
+                }
+            });
+        }
+
+        // Copy Referral Link
+        if (copyLink) {
+            copyLink.addEventListener('click', () => {
+                const linkInput = document.getElementById('referral-link');
+                const link = linkInput ? linkInput.value : '';
+                if (link && navigator.clipboard) {
+                    navigator.clipboard.writeText(link).then(() => {
+                        showNotification('Referral link copied to clipboard!', 'success');
+                    }).catch(() => {
+                        // Fallback for older browsers
+                        const textArea = document.createElement('textarea');
+                        textArea.value = link;
+                        document.body.appendChild(textArea);
+                        textArea.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(textArea);
+                        showNotification('Referral link copied to clipboard!', 'success');
+                    });
+                }
+            });
+        }
+
+        // Task Buttons
+        document.addEventListener('click', async (e) => {
+            if (e.target.classList.contains('task-btn') && !e.target.classList.contains('completed')) {
+                const taskType = e.target.getAttribute('data-task');
+                const taskId = e.target.getAttribute('data-task-id');
+                const amount = parseInt(e.target.getAttribute('data-amount'));
+                
+                if (!taskType || !taskId || !amount) return;
+                
+                setLoading(e.target, true);
+                
+                try {
+                    // Update user balance and specific earnings
+                    userProfile.balance = (userProfile.balance || 0) + amount;
+                    
+                    if (taskType === 'video') {
+                        userProfile.video_earnings = (userProfile.video_earnings || 0) + amount;
+                    } else if (taskType === 'whatsapp') {
+                        userProfile.whatsapp_earnings = (userProfile.whatsapp_earnings || 0) + amount;
+                    } else if (taskType === 'referral') {
+                        userProfile.referral_earnings = (userProfile.referral_earnings || 0) + amount;
+                    }
+                    
+                    // Save to localStorage
+                    localStorage.setItem(`user_${currentUser.id}`, JSON.stringify(userProfile));
+                    
+                    // Try to update Supabase
+                    try {
+                        let updateData = { balance: userProfile.balance };
+                        if (taskType === 'video') {
+                            updateData.video_earnings = userProfile.video_earnings;
+                        } else if (taskType === 'whatsapp') {
+                            updateData.whatsapp_earnings = userProfile.whatsapp_earnings;
+                        } else if (taskType === 'referral') {
+                            updateData.referral_earnings = userProfile.referral_earnings;
+                        }
+                        
+                        await supabase
+                            .from('profiles')
+                            .update(updateData)
+                            .eq('id', currentUser.id);
+                    } catch (dbError) {
+                        console.log('Supabase update failed, using localStorage');
+                    }
+                    
+                    // Update UI
+                    document.getElementById('total-balance').textContent = userProfile.balance;
+                    
+                    if (taskType === 'video') {
+                        document.getElementById('video-earnings').textContent = userProfile.video_earnings;
+                    } else if (taskType === 'whatsapp') {
+                        document.getElementById('whatsapp-earnings').textContent = userProfile.whatsapp_earnings;
+                    } else if (taskType === 'referral') {
+                        document.getElementById('referral-earnings').textContent = userProfile.referral_earnings;
+                    }
+                    
+                    // Mark task as completed
+                    e.target.textContent = 'Completed';
+                    e.target.classList.add('completed');
+                    e.target.disabled = true;
+                    
+                    showNotification(`Task completed! Earned KSH ${amount}`, 'success');
+                    
+                    // Reload activity and tasks
+                    loadRecentActivity();
+                    loadCompletedTasks();
+                    
+                } catch (error) {
+                    console.error('Error completing task:', error);
+                    showNotification('Error completing task. Please try again.', 'error');
+                } finally {
+                    setLoading(e.target, false);
+                }
+            }
+        });
+
+        // KYC File Upload
+        if (frontIdUpload && frontIdInput) {
+            frontIdUpload.addEventListener('click', () => {
+                frontIdInput.click();
+            });
+        }
+        
+        if (backIdUpload && backIdInput) {
+            backIdUpload.addEventListener('click', () => {
+                backIdInput.click();
+            });
+        }
+        
+        if (frontIdInput) {
+            frontIdInput.addEventListener('change', (e) => {
+                handleFileUpload(e, 'front');
+            });
+        }
+        
+        if (backIdInput) {
+            backIdInput.addEventListener('change', (e) => {
+                handleFileUpload(e, 'back');
+            });
+        }
+        
+        function handleFileUpload(event, side) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const preview = document.getElementById(`${side}-id-preview`);
+                if (preview) {
+                    preview.innerHTML = `
+                        <div class="file-preview-item">
+                            <img src="${e.target.result}" alt="${side} ID">
+                            <p>${side.charAt(0).toUpperCase() + side.slice(1)} ID</p>
+                        </div>
+                    `;
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Submit KYC
+        if (submitKyc) {
+            submitKyc.addEventListener('click', async () => {
+                setLoading(submitKyc, true);
+                
+                try {
+                    userProfile.kyc_status = 'pending';
+                    
+                    // Save to localStorage
+                    localStorage.setItem(`user_${currentUser.id}`, JSON.stringify(userProfile));
+                    
+                    // Try to update Supabase
+                    try {
+                        await supabase
+                            .from('profiles')
+                            .update({
+                                kyc_status: 'pending'
+                            })
+                            .eq('id', currentUser.id);
+                    } catch (dbError) {
+                        console.log('Supabase update failed, using localStorage');
+                    }
+                    
+                    updateKYCStatus('pending');
+                    
+                    if (kycModal) kycModal.classList.remove('active');
+                    showNotification('KYC documents submitted for verification', 'success');
+                    
+                } catch (error) {
+                    console.error('Error submitting KYC:', error);
+                    showNotification('Error submitting KYC. Please try again.', 'error');
+                } finally {
+                    setLoading(submitKyc, false);
+                }
+            });
+        }
+
+        // Load KYC Status
+        function loadKYCStatus() {
+            const status = userProfile.kyc_status || 'not_submitted';
+            const kycStatusInfo = document.getElementById('kyc-status-info');
+            const kycUploadForm = document.getElementById('kyc-upload-form');
+            
+            if (!kycStatusInfo || !kycUploadForm) return;
+            
+            if (status === 'verified') {
+                kycStatusInfo.innerHTML = `
+                    <div class="kyc-status verified">
+                        <i class="fas fa-check-circle kyc-icon"></i>
+                        <div>Your KYC verification is complete and approved.</div>
+                    </div>
+                `;
+                kycUploadForm.style.display = 'none';
+            } else if (status === 'pending') {
+                kycStatusInfo.innerHTML = `
+                    <div class="kyc-status pending">
+                        <i class="fas fa-clock kyc-icon"></i>
+                        <div>Your KYC verification is pending review.</div>
+                    </div>
+                `;
+                kycUploadForm.style.display = 'none';
+            } else if (status === 'rejected') {
+                kycStatusInfo.innerHTML = `
+                    <div class="kyc-status rejected">
+                        <i class="fas fa-times-circle kyc-icon"></i>
+                        <div>Your KYC verification was rejected. Please submit again.</div>
+                    </div>
+                `;
+                kycUploadForm.style.display = 'block';
+            } else {
+                kycStatusInfo.innerHTML = `
+                    <div class="kyc-status pending">
+                        <i class="fas fa-id-card kyc-icon"></i>
+                        <div>Please complete KYC verification to withdraw funds.</div>
+                    </div>
+                `;
+                kycUploadForm.style.display = 'block';
+            }
+        }
+
+        // Update KYC Status in UI
+        function updateKYCStatus(status) {
+            const kycStatusBadge = document.getElementById('kyc-status-badge');
+            if (!kycStatusBadge) return;
+            
+            if (status === 'verified') {
+                kycStatusBadge.innerHTML = `
+                    <div class="kyc-status verified" style="margin-top: 5px; padding: 5px 10px; display: inline-block;">
+                        <i class="fas fa-check-circle"></i> KYC Verified
+                    </div>
+                `;
+                userProfile.kyc_verified = true;
+            } else if (status === 'pending') {
+                kycStatusBadge.innerHTML = `
+                    <div class="kyc-status pending" style="margin-top: 5px; padding: 5px 10px; display: inline-block;">
+                        <i class="fas fa-clock"></i> KYC Pending
+                    </div>
+                `;
+                userProfile.kyc_verified = false;
+            } else if (status === 'rejected') {
+                kycStatusBadge.innerHTML = `
+                    <div class="kyc-status rejected" style="margin-top: 5px; padding: 5px 10px; display: inline-block;">
+                        <i class="fas fa-times-circle"></i> KYC Rejected
+                    </div>
+                `;
+                userProfile.kyc_verified = false;
+            } else {
+                kycStatusBadge.innerHTML = `
+                    <div class="kyc-status pending" style="margin-top: 5px; padding: 5px 10px; display: inline-block;">
+                        <i class="fas fa-id-card"></i> KYC Not Submitted
+                    </div>
+                `;
+                userProfile.kyc_verified = false;
+            }
+        }
+
+        // Logout
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', async (e) => {
+                e.preventDefault();
+                
+                try {
+                    const { error } = await supabase.auth.signOut();
+                    if (error) throw error;
+                    
+                    currentUser = null;
+                    userProfile = null;
+                    
+                    if (authContainer) authContainer.style.display = 'flex';
+                    if (appContainer) appContainer.style.display = 'none';
+                    
+                    // Reset forms
+                    const loginEmail = document.getElementById('login-email');
+                    const loginPassword = document.getElementById('login-password');
+                    const signupUsername = document.getElementById('signup-username');
+                    const signupEmail = document.getElementById('signup-email');
+                    const signupPhone = document.getElementById('signup-phone');
+                    const signupPassword = document.getElementById('signup-password');
+                    const signupReferral = document.getElementById('signup-referral');
+                    
+                    if (loginEmail) loginEmail.value = '';
+                    if (loginPassword) loginPassword.value = '';
+                    if (signupUsername) signupUsername.value = '';
+                    if (signupEmail) signupEmail.value = '';
+                    if (signupPhone) signupPhone.value = '';
+                    if (signupPassword) signupPassword.value = '';
+                    if (signupReferral) signupReferral.value = '';
+                    
+                    // Show login form by default
+                    if (loginForm) loginForm.style.display = 'block';
+                    if (signupForm) signupForm.style.display = 'none';
+                    
+                    showNotification('Logged out successfully', 'info');
+                    
+                } catch (error) {
+                    console.error('Logout error:', error);
+                    showNotification('Error during logout. Please try again.', 'error');
+                }
+            });
+        }
+
+        // Check if user is already logged in
+        async function checkAuthState() {
+            try {
+                const { data, error } = await supabase.auth.getSession();
+                
+                if (error) throw error;
+                
+                if (data.session) {
+                    currentUser = data.session.user;
+                    await loadUserProfile();
+                    
+                    if (authContainer) authContainer.style.display = 'none';
+                    if (appContainer) appContainer.style.display = 'block';
+                }
+            } catch (error) {
+                console.error('Auth state error:', error);
+            }
+        }
+
+        // Initialize app
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeDatabase();
+            checkAuthState();
+        });
+    </script>
+</body>
+</html>
