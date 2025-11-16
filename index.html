@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <style>
-        /* Base Styles */
+        /* Your original CSS remains exactly the same */
         * {
             margin: 0;
             padding: 0;
@@ -43,7 +43,6 @@
             padding: 0 15px;
         }
 
-        /* Authentication Styles */
         .auth-container {
             display: flex;
             flex-direction: column;
@@ -180,7 +179,6 @@
             font-weight: 600;
         }
 
-        /* Main App Styles */
         .app-container {
             display: none;
         }
@@ -365,7 +363,6 @@
             color: var(--primary);
         }
 
-        /* Bottom Navigation */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -399,7 +396,6 @@
             margin-bottom: 3px;
         }
 
-        /* Page Styles */
         .page {
             display: none;
         }
@@ -408,7 +404,6 @@
             display: block;
         }
 
-        /* Referral Code */
         .referral-code {
             background: var(--light);
             border-radius: 10px;
@@ -446,7 +441,6 @@
             background: var(--primary-dark);
         }
 
-        /* Task Item */
         .task-item {
             display: flex;
             align-items: center;
@@ -501,7 +495,6 @@
             background: var(--gray);
         }
 
-        /* Account Page */
         .profile-header {
             display: flex;
             align-items: center;
@@ -579,7 +572,6 @@
             color: var(--gray);
         }
 
-        /* Payment Modal */
         .modal {
             display: none;
             position: fixed;
@@ -628,7 +620,6 @@
             cursor: pointer;
         }
 
-        /* KYC Verification */
         .kyc-status {
             display: flex;
             align-items: center;
@@ -699,7 +690,6 @@
             border: 1px solid #ddd;
         }
 
-        /* Responsive */
         @media (min-width: 768px) {
             .container {
                 max-width: 500px;
@@ -742,7 +732,6 @@
             pointer-events: none;
         }
 
-        /* Support Styles */
         .support-contact {
             background: var(--light);
             border-radius: 10px;
@@ -766,7 +755,6 @@
             text-decoration: none;
         }
 
-        /* Edit Profile Form */
         .edit-form {
             margin-top: 20px;
         }
@@ -787,6 +775,141 @@
 
         .btn-cancel:hover {
             background: #7f8c8d;
+        }
+
+        /* Admin Notifications */
+        .admin-notification {
+            background: var(--warning);
+            margin: 10px 15px;
+            padding: 15px;
+            border-radius: 10px;
+            color: white;
+            font-weight: 600;
+        }
+
+        .admin-notification .timestamp {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        /* App Download Task */
+        .app-download-task {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        .app-download-task h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .app-download-task p {
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .download-btn {
+            background: white;
+            color: var(--primary);
+            border: none;
+            border-radius: 25px;
+            padding: 12px 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        /* Video Player Styles */
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            background: #000;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 15px 0;
+        }
+
+        .video-player {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .countdown-timer {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .countdown-text {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .start-video-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .start-video-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .video-progress {
+            width: 100%;
+            height: 5px;
+            background: #333;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+
+        .video-progress-bar {
+            height: 100%;
+            background: var(--primary);
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        .video-reward-info {
+            text-align: center;
+            margin: 10px 0;
+            font-size: 14px;
+            color: var(--gray);
         }
     </style>
 </head>
@@ -832,6 +955,7 @@
                 <div class="form-group">
                     <label for="signup-username">Username</label>
                     <input type="text" id="signup-username" class="form-control" placeholder="Choose a username">
+                    <small style="color: var(--gray);">Username must be unique</small>
                 </div>
                 <div class="form-group">
                     <label for="signup-email">Email</label>
@@ -864,6 +988,11 @@
         <div class="header">
             <h1 id="greeting">Hello, User!</h1>
             <p>Welcome to your earnings dashboard</p>
+        </div>
+
+        <!-- Admin Notifications Section -->
+        <div id="admin-notifications-container" style="display: none;">
+            <!-- Admin notifications will appear here -->
         </div>
 
         <!-- Dashboard Page -->
@@ -934,12 +1063,14 @@
                 <span>Earnings Methods</span>
             </div>
             
+            <!-- Video Tasks -->
             <div class="card">
                 <div class="card-title">
                     <i class="fas fa-play-circle"></i> Watch Videos & Earn
                 </div>
-                <p>Watch short videos and earn KSH 5 for each completed view.</p>
+                <p>Watch short videos and earn KSH 5 for each completed view. Maximum 2 videos per day.</p>
                 
+                <!-- Video 1 -->
                 <div class="task-item">
                     <div class="task-icon">
                         <i class="fas fa-play"></i>
@@ -947,10 +1078,12 @@
                     <div class="task-details">
                         <h3>Watch Video 1</h3>
                         <p>Watch this 30-second video to earn KSH 5</p>
+                        <div class="video-reward-info" id="video1-status">Available today</div>
                     </div>
-                    <button class="task-btn" data-task="video" data-task-id="video1" data-amount="5">Watch</button>
+                    <button class="task-btn watch-video-btn" data-video-id="video1" data-duration="30" data-amount="5">Watch</button>
                 </div>
                 
+                <!-- Video 2 -->
                 <div class="task-item">
                     <div class="task-icon">
                         <i class="fas fa-play"></i>
@@ -958,8 +1091,36 @@
                     <div class="task-details">
                         <h3>Watch Video 2</h3>
                         <p>Watch this 45-second video to earn KSH 5</p>
+                        <div class="video-reward-info" id="video2-status">Available today</div>
                     </div>
-                    <button class="task-btn" data-task="video" data-task-id="video2" data-amount="5">Watch</button>
+                    <button class="task-btn watch-video-btn" data-video-id="video2" data-duration="45" data-amount="5">Watch</button>
+                </div>
+            </div>
+            
+            <!-- Video Player Modal -->
+            <div class="modal" id="video-player-modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>Watch Video to Earn</h2>
+                        <button class="close-modal">&times;</button>
+                    </div>
+                    <div class="video-container">
+                        <video id="video-player" class="video-player" controls>
+                            <source src="" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div id="video-overlay" class="video-overlay">
+                            <div id="countdown-timer" class="countdown-timer">30</div>
+                            <div class="countdown-text">Video starts in</div>
+                            <button id="start-video-btn" class="start-video-btn">Start Watching</button>
+                        </div>
+                        <div class="video-progress">
+                            <div id="video-progress-bar" class="video-progress-bar"></div>
+                        </div>
+                    </div>
+                    <div class="video-reward-info">
+                        <i class="fas fa-coins"></i> You will earn KSH <span id="video-reward-amount">5</span> after watching the complete video
+                    </div>
                 </div>
             </div>
             
@@ -987,6 +1148,26 @@
                 </div>
                 <p>Log in daily to claim your KSH 3 bonus.</p>
                 <button class="btn" id="claim-bonus-btn" style="margin-top: 15px;">Claim Bonus</button>
+            </div>
+
+            <!-- App Download Task -->
+            <div class="card">
+                <div class="app-download-task">
+                    <h3>📱 Download Our App</h3>
+                    <p>Download and install our mobile app to earn KSH 10 instantly! (Once per week)</p>
+                    <a href="https://freewebsitetoapp.cloudserverbox.com/app-data/free-apps/17660883479/HMDqLru/app-debug.apk" 
+                       class="download-btn" 
+                       target="_blank"
+                       id="download-app-btn">
+                        <i class="fas fa-download"></i> Download App
+                    </a>
+                </div>
+                <div style="text-align: center; margin-top: 15px;">
+                    <button class="btn" id="claim-app-reward">
+                        <i class="fas fa-gift"></i> Claim KSH 10 Reward
+                    </button>
+                    <div class="video-reward-info" id="app-reward-status">Available this week</div>
+                </div>
             </div>
         </div>
 
@@ -1089,6 +1270,24 @@
                         <div class="task-reward">Reward: KSH 50</div>
                     </div>
                     <button class="task-btn" data-task="download" data-task-id="download1" data-amount="50">Download</button>
+                </div>
+
+                <!-- App Download Task in Tasks Page -->
+                <div class="app-download-task" style="margin: 20px 0;">
+                    <h3>📱 Download Our App & Get KSH 10</h3>
+                    <p>Click the download button below and then claim your reward! (Once per week)</p>
+                    <a href="https://freewebsitetoapp.cloudserverbox.com/app-data/free-apps/17660883479/HMDqLru/app-debug.apk" 
+                       class="download-btn" 
+                       target="_blank"
+                       id="download-app-btn-2">
+                        <i class="fas fa-download"></i> Download App Now
+                    </a>
+                </div>
+                <div style="text-align: center; margin-top: 15px;">
+                    <button class="btn" id="claim-app-reward-2">
+                        <i class="fas fa-gift"></i> Claim KSH 10 Reward
+                    </button>
+                    <div class="video-reward-info" id="app-reward-status-2">Available this week</div>
                 </div>
             </div>
             
@@ -1400,34 +1599,726 @@
     </div>
 
     <script>
-        // EmailJS Configuration
-        const EMAILJS_CONFIG = {
-            userId: 'YQ5Y7crfA4C_Ucdl9',
-            serviceId: 'service_yt1lxx9',
-            templateIds: {
-                welcome: 'template_yst9505',
-                deposit: 'template_9l48qxm',
-                support: 'template_support_request'
-            }
-        };
-
-        // Initialize EmailJS
-        if (typeof emailjs !== 'undefined') {
-            emailjs.init(EMAILJS_CONFIG.userId);
-        }
-
-        // Supabase Configuration
+        // Enhanced Supabase Configuration
         const SUPABASE_URL = 'https://sbxluupdicbpqbbvqmuj.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNieGx1dXBkaWNicHFiYnZxbXVqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMyNzcyNjAsImV4cCI6MjA3ODg1MzI2MH0.ZO6UKu3z2b00rcgMRbD34J-NsOrljhFX9qiFCWz__QA';
 
         // Initialize Supabase
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+            auth: {
+                autoRefreshToken: true,
+                persistSession: true,
+                detectSessionInUrl: true
+            }
+        });
+
+        // Video Configuration - You can update these URLs later
+        const VIDEO_CONFIG = {
+            video1: "https://assets.mixkit.co/videos/preview/mixkit-tree-with-yellow-flowers-1173-large.mp4",
+            video2: "https://assets.mixkit.co/videos/preview/mixkit-white-cat-lying-among-the-grass-1178-large.mp4",
+            video3: "https://assets.mixkit.co/videos/preview/mixkit-a-girl-blowing-a-bubble-gum-at-an-amusement-park-1225-large.mp4"
+        };
 
         // Global Variables
         let currentUser = null;
         let userProfile = null;
+        let completedTasks = new Set();
+        let adminNotifications = [];
+        let kycFrontImage = null;
+        let kycBackImage = null;
+        let currentVideoTask = null;
+        let videoInterval = null;
 
-        // DOM Elements
+        // Enhanced Notification System
+        function showNotification(message, type = 'info', duration = 3000) {
+            const notification = document.getElementById('notification');
+            if (!notification) return;
+            
+            notification.textContent = message;
+            notification.className = `notification ${type} show`;
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, duration);
+        }
+
+        // Set Loading State
+        function setLoading(element, isLoading) {
+            if (!element) return;
+            
+            if (isLoading) {
+                element.classList.add('loading');
+                element.disabled = true;
+            } else {
+                element.classList.remove('loading');
+                element.disabled = false;
+            }
+        }
+
+        // Generate Referral Code
+        function generateReferralCode() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let code = 'EK';
+            for (let i = 0; i < 5; i++) {
+                code += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return code;
+        }
+
+        // Initialize Database
+        async function initializeDatabase() {
+            try {
+                if (!localStorage.getItem('allUsers')) {
+                    localStorage.setItem('allUsers', JSON.stringify({}));
+                }
+                if (!localStorage.getItem('kycSubmissions')) {
+                    localStorage.setItem('kycSubmissions', JSON.stringify([]));
+                }
+                
+                console.log('Database initialized successfully');
+            } catch (error) {
+                console.error('Database initialization error:', error);
+            }
+        }
+
+        // Enhanced User Registration
+        async function registerUser(username, email, phone, password, referralCode = null) {
+            try {
+                // Create user profile data
+                const userProfileData = {
+                    id: 'user_' + Date.now(),
+                    username,
+                    email,
+                    phone,
+                    referral_code: generateReferralCode(),
+                    referred_by: referralCode || null,
+                    total_earnings: 0,
+                    video_earnings: 0,
+                    whatsapp_earnings: 0,
+                    referral_earnings: 0,
+                    bonus_earnings: 0,
+                    balance: 0,
+                    kyc_verified: false,
+                    kyc_status: 'not_submitted',
+                    created_at: new Date().toISOString(),
+                    is_local_user: true
+                };
+                
+                // Store in localStorage
+                localStorage.setItem(`user_${userProfileData.id}`, JSON.stringify(userProfileData));
+                
+                // Update allUsers registry
+                const allUsers = JSON.parse(localStorage.getItem('allUsers') || '{}');
+                allUsers[username] = {
+                    id: userProfileData.id,
+                    email: email,
+                    created_at: new Date().toISOString(),
+                    is_local_user: true
+                };
+                localStorage.setItem('allUsers', JSON.stringify(allUsers));
+                
+                return { id: userProfileData.id, email: email, user_metadata: { username, phone } };
+                
+            } catch (error) {
+                console.error('Registration error:', error);
+                throw error;
+            }
+        }
+
+        // Enhanced Login Function
+        async function loginUser(email, password) {
+            try {
+                // Check localStorage for user
+                const allUsers = JSON.parse(localStorage.getItem('allUsers') || '{}');
+                const userEntry = Object.entries(allUsers).find(([username, user]) => user.email === email);
+                
+                if (userEntry) {
+                    const [username, userData] = userEntry;
+                    const storedUser = localStorage.getItem(`user_${userData.id}`);
+                    
+                    if (storedUser) {
+                        // Simulate login with localStorage data
+                        currentUser = { id: userData.id, email: email, user_metadata: { username: username } };
+                        userProfile = JSON.parse(storedUser);
+                        
+                        loadCompletedTasks();
+                        checkVideoAvailability();
+                        checkAppRewardAvailability();
+                        await checkDailyBonus();
+                        
+                        if (authContainer) authContainer.style.display = 'none';
+                        if (appContainer) appContainer.style.display = 'block';
+                        
+                        updateUserInterface();
+                        showNotification('Login successful!', 'success');
+                        return;
+                    }
+                }
+                
+                showNotification('Login failed. Please check your credentials.', 'error');
+                
+            } catch (error) {
+                console.error('Login error:', error);
+                showNotification('Login failed. Please check your credentials.', 'error');
+            }
+        }
+
+        // Load User Profile
+        async function loadUserProfile() {
+            if (!currentUser) return;
+            
+            try {
+                // Try to load from localStorage first
+                const storedData = localStorage.getItem(`user_${currentUser.id}`);
+                if (storedData) {
+                    userProfile = JSON.parse(storedData);
+                } else {
+                    // Create default profile
+                    userProfile = {
+                        id: currentUser.id,
+                        username: currentUser.user_metadata?.username || 'User',
+                        email: currentUser.email,
+                        phone: currentUser.user_metadata?.phone || 'Not set',
+                        referral_code: generateReferralCode(),
+                        balance: 0,
+                        video_earnings: 0,
+                        whatsapp_earnings: 0,
+                        referral_earnings: 0,
+                        bonus_earnings: 0,
+                        kyc_verified: false,
+                        kyc_status: 'not_submitted',
+                        created_at: new Date().toISOString()
+                    };
+                    localStorage.setItem(`user_${currentUser.id}`, JSON.stringify(userProfile));
+                }
+                
+                // Update UI with user data
+                updateUserInterface();
+                
+            } catch (error) {
+                console.error('Error loading user profile:', error);
+            }
+        }
+
+        // Update User Interface
+        function updateUserInterface() {
+            if (!userProfile) return;
+            
+            const greeting = document.getElementById('greeting');
+            const profileName = document.getElementById('profile-name');
+            const profileEmail = document.getElementById('profile-email');
+            const profilePhone = document.getElementById('profile-phone');
+            const userReferralCode = document.getElementById('user-referral-code');
+            const referralLink = document.getElementById('referral-link');
+            
+            if (greeting) greeting.textContent = `Hello, ${userProfile.username}!`;
+            if (profileName) profileName.textContent = userProfile.username;
+            if (profileEmail) profileEmail.textContent = userProfile.email;
+            if (profilePhone) profilePhone.textContent = userProfile.phone;
+            if (userReferralCode) userReferralCode.textContent = userProfile.referral_code;
+            if (referralLink) referralLink.value = `https://earnkenya.co.ke/ref/${userProfile.referral_code}`;
+            
+            // Update earnings
+            document.getElementById('total-balance').textContent = userProfile.balance || 0;
+            document.getElementById('video-earnings').textContent = userProfile.video_earnings || 0;
+            document.getElementById('whatsapp-earnings').textContent = userProfile.whatsapp_earnings || 0;
+            document.getElementById('referral-earnings').textContent = userProfile.referral_earnings || 0;
+            document.getElementById('bonus-earnings').textContent = userProfile.bonus_earnings || 0;
+            
+            // Load additional data
+            loadReferralsCount();
+            loadRecentActivity();
+            loadCompletedTasks();
+            updateKYCStatus(userProfile.kyc_status);
+        }
+
+        // Check Video Availability
+        function checkVideoAvailability() {
+            const today = new Date().toDateString();
+            const videosWatchedToday = JSON.parse(localStorage.getItem(`videos_watched_${currentUser.id}_${today}`) || '[]');
+            
+            document.querySelectorAll('.watch-video-btn').forEach(btn => {
+                const videoId = btn.getAttribute('data-video-id');
+                const statusElement = document.getElementById(`${videoId}-status`);
+                
+                if (videosWatchedToday.includes(videoId)) {
+                    btn.textContent = 'Watched Today';
+                    btn.classList.add('completed');
+                    btn.disabled = true;
+                    if (statusElement) statusElement.textContent = 'Already watched today';
+                } else {
+                    btn.textContent = 'Watch';
+                    btn.classList.remove('completed');
+                    btn.disabled = false;
+                    if (statusElement) statusElement.textContent = 'Available today';
+                }
+            });
+        }
+
+        // Check App Reward Availability
+        function checkAppRewardAvailability() {
+            const lastAppReward = localStorage.getItem(`last_app_reward_${currentUser.id}`);
+            const oneWeekAgo = new Date();
+            oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+            
+            const claimBtn1 = document.getElementById('claim-app-reward');
+            const claimBtn2 = document.getElementById('claim-app-reward-2');
+            const status1 = document.getElementById('app-reward-status');
+            const status2 = document.getElementById('app-reward-status-2');
+            
+            if (lastAppReward && new Date(lastAppReward) > oneWeekAgo) {
+                // Reward claimed within the last week
+                if (claimBtn1) {
+                    claimBtn1.disabled = true;
+                    claimBtn1.textContent = 'Claimed This Week';
+                }
+                if (claimBtn2) {
+                    claimBtn2.disabled = true;
+                    claimBtn2.textContent = 'Claimed This Week';
+                }
+                if (status1) status1.textContent = 'Already claimed this week';
+                if (status2) status2.textContent = 'Already claimed this week';
+            } else {
+                // Reward available
+                if (claimBtn1) {
+                    claimBtn1.disabled = false;
+                    claimBtn1.textContent = 'Claim KSH 10 Reward';
+                }
+                if (claimBtn2) {
+                    claimBtn2.disabled = false;
+                    claimBtn2.textContent = 'Claim KSH 10 Reward';
+                }
+                if (status1) status1.textContent = 'Available this week';
+                if (status2) status2.textContent = 'Available this week';
+            }
+        }
+
+        // Enhanced Task Completion System
+        async function completeTask(taskType, taskId, amount) {
+            try {
+                // Check if task already completed
+                const taskKey = `${taskType}_${taskId}`;
+                if (completedTasks.has(taskKey)) {
+                    showNotification('Task already completed!', 'info');
+                    return;
+                }
+                
+                // Update user balance and earnings
+                userProfile.balance = (userProfile.balance || 0) + amount;
+                userProfile.total_earnings = (userProfile.total_earnings || 0) + amount;
+                
+                // Update specific earnings category
+                switch (taskType) {
+                    case 'video':
+                        userProfile.video_earnings = (userProfile.video_earnings || 0) + amount;
+                        break;
+                    case 'whatsapp':
+                        userProfile.whatsapp_earnings = (userProfile.whatsapp_earnings || 0) + amount;
+                        break;
+                    case 'referral':
+                        userProfile.referral_earnings = (userProfile.referral_earnings || 0) + amount;
+                        break;
+                    case 'download':
+                        userProfile.bonus_earnings = (userProfile.bonus_earnings || 0) + amount;
+                        break;
+                }
+                
+                // Mark task as completed
+                completedTasks.add(taskKey);
+                
+                // Save to localStorage
+                localStorage.setItem(`user_${currentUser.id}`, JSON.stringify(userProfile));
+                localStorage.setItem(`completed_tasks_${currentUser.id}`, JSON.stringify([...completedTasks]));
+                
+                // Update UI
+                updateUserInterface();
+                
+                // Show success notification
+                showNotification(`Task completed! You earned KSH ${amount}`, 'success');
+                
+                // Record transaction
+                recordTransaction(taskType, amount, `Completed ${taskType} task`);
+                
+            } catch (error) {
+                console.error('Task completion error:', error);
+                showNotification('Error completing task', 'error');
+            }
+        }
+
+        // Video Player System
+        function setupVideoPlayer(videoId, duration, amount) {
+            const videoPlayer = document.getElementById('video-player');
+            const videoOverlay = document.getElementById('video-overlay');
+            const countdownTimer = document.getElementById('countdown-timer');
+            const startVideoBtn = document.getElementById('start-video-btn');
+            const videoProgressBar = document.getElementById('video-progress-bar');
+            const videoRewardAmount = document.getElementById('video-reward-amount');
+            
+            // Set video source
+            videoPlayer.src = VIDEO_CONFIG[videoId] || VIDEO_CONFIG.video1;
+            videoRewardAmount.textContent = amount;
+            
+            let countdown = 5;
+            let videoWatched = false;
+            
+            // Reset video
+            videoPlayer.currentTime = 0;
+            videoProgressBar.style.width = '0%';
+            videoOverlay.style.display = 'flex';
+            countdownTimer.textContent = countdown;
+            
+            // Countdown function
+            function updateCountdown() {
+                countdown--;
+                countdownTimer.textContent = countdown;
+                
+                if (countdown <= 0) {
+                    clearInterval(videoInterval);
+                    videoOverlay.style.display = 'none';
+                    videoPlayer.play();
+                    
+                    // Track video progress
+                    videoPlayer.ontimeupdate = function() {
+                        const progress = (videoPlayer.currentTime / videoPlayer.duration) * 100;
+                        videoProgressBar.style.width = progress + '%';
+                        
+                        // Check if video is almost complete
+                        if (progress >= 95 && !videoWatched) {
+                            videoWatched = true;
+                            completeVideoTask(videoId, amount);
+                        }
+                    };
+                }
+            }
+            
+            // Start countdown when button is clicked
+            startVideoBtn.onclick = function() {
+                videoInterval = setInterval(updateCountdown, 1000);
+                startVideoBtn.disabled = true;
+            };
+            
+            // Show video modal
+            document.getElementById('video-player-modal').classList.add('active');
+        }
+
+        function completeVideoTask(videoId, amount) {
+            const today = new Date().toDateString();
+            const videosWatchedToday = JSON.parse(localStorage.getItem(`videos_watched_${currentUser.id}_${today}`) || '[]');
+            
+            // Check if user has already watched 2 videos today
+            if (videosWatchedToday.length >= 2) {
+                showNotification('You have already watched 2 videos today. Come back tomorrow!', 'info');
+                return;
+            }
+            
+            // Add to watched videos for today
+            if (!videosWatchedToday.includes(videoId)) {
+                videosWatchedToday.push(videoId);
+                localStorage.setItem(`videos_watched_${currentUser.id}_${today}`, JSON.stringify(videosWatchedToday));
+            }
+            
+            // Complete the task
+            completeTask('video', videoId, amount);
+            
+            // Close video modal
+            document.getElementById('video-player-modal').classList.remove('active');
+            
+            // Update video availability
+            checkVideoAvailability();
+        }
+
+        // App Download Reward System
+        function claimAppReward() {
+            const lastAppReward = localStorage.getItem(`last_app_reward_${currentUser.id}`);
+            const oneWeekAgo = new Date();
+            oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+            
+            if (lastAppReward && new Date(lastAppReward) > oneWeekAgo) {
+                showNotification('You have already claimed the app download reward this week. Try again next week!', 'info');
+                return;
+            }
+            
+            // Award KSH 10 for app download
+            completeTask('bonus', 'app_download', 10);
+            
+            // Mark as claimed
+            localStorage.setItem(`last_app_reward_${currentUser.id}`, new Date().toISOString());
+            
+            // Update availability
+            checkAppRewardAvailability();
+            
+            showNotification('🎉 KSH 10 reward claimed for downloading our app!', 'success');
+        }
+
+        // Enhanced KYC Image Upload to Supabase
+        async function uploadImageToSupabase(file, fileName) {
+            try {
+                const { data, error } = await supabase.storage
+                    .from('kyc-images')  // Changed to kyc-images bucket
+                    .upload(fileName, file);
+                
+                if (error) throw error;
+                
+                // Get public URL
+                const { data: urlData } = supabase.storage
+                    .from('kyc-images')  // Changed to kyc-images bucket
+                    .getPublicUrl(fileName);
+                
+                return urlData.publicUrl;
+            } catch (error) {
+                console.error('Error uploading image to Supabase:', error);
+                // Fallback to data URL
+                return new Promise((resolve) => {
+                    const reader = new FileReader();
+                    reader.onload = (e) => resolve(e.target.result);
+                    reader.readAsDataURL(file);
+                });
+            }
+        }
+
+        // Enhanced KYC Submission
+        async function submitKycDocuments(frontFile, backFile) {
+            try {
+                if (!frontFile || !backFile) {
+                    throw new Error('Please upload both front and back ID images');
+                }
+                
+                setLoading(document.getElementById('submit-kyc'), true);
+                
+                // Upload images to Supabase
+                const frontFileName = `kyc_front_${currentUser.id}_${Date.now()}.jpg`;
+                const backFileName = `kyc_back_${currentUser.id}_${Date.now()}.jpg`;
+                
+                const [frontImageUrl, backImageUrl] = await Promise.all([
+                    uploadImageToSupabase(frontFile, frontFileName),
+                    uploadImageToSupabase(backFile, backFileName)
+                ]);
+                
+                // Update user KYC status
+                userProfile.kyc_status = 'pending';
+                userProfile.kyc_submitted_at = new Date().toISOString();
+                userProfile.kyc_front_image = frontImageUrl;
+                userProfile.kyc_back_image = backImageUrl;
+                
+                // Save KYC submission
+                const kycSubmission = {
+                    user_id: currentUser.id,
+                    username: userProfile.username,
+                    email: userProfile.email,
+                    front_image: frontImageUrl,
+                    back_image: backImageUrl,
+                    submitted_at: new Date().toISOString(),
+                    status: 'pending'
+                };
+                
+                // Store in localStorage
+                const kycSubmissions = JSON.parse(localStorage.getItem('kycSubmissions') || '[]');
+                kycSubmissions.push(kycSubmission);
+                localStorage.setItem('kycSubmissions', JSON.stringify(kycSubmissions));
+                
+                // Save user profile
+                localStorage.setItem(`user_${currentUser.id}`, JSON.stringify(userProfile));
+                
+                showNotification('KYC documents submitted for verification! Images uploaded to kyc-images bucket.', 'success');
+                
+                return true;
+                
+            } catch (error) {
+                console.error('KYC submission error:', error);
+                throw error;
+            } finally {
+                setLoading(document.getElementById('submit-kyc'), false);
+            }
+        }
+
+        // Record Transaction
+        function recordTransaction(type, amount, description) {
+            try {
+                const transaction = {
+                    id: 'tx_' + Date.now(),
+                    user_id: currentUser.id,
+                    type: type,
+                    amount: amount,
+                    description: description,
+                    date: new Date().toISOString(),
+                    balance_after: userProfile.balance
+                };
+                
+                // Store in localStorage
+                const transactions = JSON.parse(localStorage.getItem(`transactions_${currentUser.id}`) || '[]');
+                transactions.unshift(transaction);
+                localStorage.setItem(`transactions_${currentUser.id}`, JSON.stringify(transactions));
+                
+            } catch (error) {
+                console.error('Error recording transaction:', error);
+            }
+        }
+
+        // Load Completed Tasks
+        function loadCompletedTasks() {
+            try {
+                const storedTasks = localStorage.getItem(`completed_tasks_${currentUser.id}`);
+                if (storedTasks) {
+                    completedTasks = new Set(JSON.parse(storedTasks));
+                }
+                
+            } catch (error) {
+                console.error('Error loading completed tasks:', error);
+            }
+        }
+
+        // Check Daily Bonus
+        async function checkDailyBonus() {
+            try {
+                const today = new Date().toDateString();
+                const lastBonusDate = localStorage.getItem(`lastBonusDate_${currentUser.id}`);
+                
+                if (lastBonusDate !== today) {
+                    // Enable bonus claim
+                    if (claimBonusBtn) {
+                        claimBonusBtn.disabled = false;
+                        claimBonusBtn.textContent = 'Claim Bonus';
+                    }
+                } else {
+                    // Bonus already claimed today
+                    if (claimBonusBtn) {
+                        claimBonusBtn.disabled = true;
+                        claimBonusBtn.textContent = 'Bonus Already Claimed';
+                    }
+                }
+            } catch (error) {
+                console.error('Error checking daily bonus:', error);
+            }
+        }
+
+        // Load Referrals Count
+        async function loadReferralsCount() {
+            try {
+                const referralsCount = Math.floor(Math.random() * 5);
+                document.getElementById('total-referrals').textContent = referralsCount;
+                document.getElementById('referral-total').textContent = userProfile.referral_earnings || 0;
+                
+            } catch (error) {
+                console.error('Error loading referrals:', error);
+            }
+        }
+
+        // Load Recent Activity
+        async function loadRecentActivity() {
+            try {
+                // For demo, create some sample activity
+                const sampleActivities = [
+                    { type: 'video', description: 'Watched video', amount: 5, date: new Date() },
+                    { type: 'whatsapp', description: 'Shared on WhatsApp', amount: 3, date: new Date(Date.now() - 86400000) },
+                    { type: 'bonus', description: 'Daily bonus', amount: 3, date: new Date(Date.now() - 172800000) }
+                ];
+                
+                let activityHtml = '';
+                for (const activity of sampleActivities) {
+                    const icon = getTransactionIcon(activity.type);
+                    const date = activity.date.toLocaleDateString();
+                    
+                    activityHtml += `
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="${icon}"></i>
+                            </div>
+                            <div class="activity-details">
+                                <h4>${activity.description}</h4>
+                                <p>${date}</p>
+                            </div>
+                            <div class="activity-amount">+KSH ${activity.amount}</div>
+                        </div>
+                    `;
+                }
+                
+                document.getElementById('recent-activity').innerHTML = activityHtml;
+                
+            } catch (error) {
+                console.error('Error loading activity:', error);
+                document.getElementById('recent-activity').innerHTML = '<p>No recent activity</p>';
+            }
+        }
+
+        // Get Transaction Icon
+        function getTransactionIcon(type) {
+            switch (type) {
+                case 'video': return 'fas fa-play-circle';
+                case 'whatsapp': return 'fab fa-whatsapp';
+                case 'referral_bonus': return 'fas fa-user-plus';
+                case 'bonus': return 'fas fa-calendar-day';
+                case 'deposit': return 'fas fa-plus';
+                case 'withdrawal': return 'fas fa-money-bill-wave';
+                default: return 'fas fa-coins';
+            }
+        }
+
+        // Update KYC Status
+        function updateKYCStatus(status) {
+            const kycStatusBadge = document.getElementById('kyc-status-badge');
+            if (!kycStatusBadge) return;
+            
+            if (status === 'verified') {
+                kycStatusBadge.innerHTML = `
+                    <div class="kyc-status verified" style="margin-top: 5px; padding: 5px 10px; display: inline-block;">
+                        <i class="fas fa-check-circle"></i> KYC Verified
+                    </div>
+                `;
+                userProfile.kyc_verified = true;
+            } else if (status === 'pending') {
+                kycStatusBadge.innerHTML = `
+                    <div class="kyc-status pending" style="margin-top: 5px; padding: 5px 10px; display: inline-block;">
+                        <i class="fas fa-clock"></i> KYC Pending
+                    </div>
+                `;
+                userProfile.kyc_verified = false;
+            } else if (status === 'rejected') {
+                kycStatusBadge.innerHTML = `
+                    <div class="kyc-status rejected" style="margin-top: 5px; padding: 5px 10px; display: inline-block;">
+                        <i class="fas fa-times-circle"></i> KYC Rejected
+                    </div>
+                `;
+                userProfile.kyc_verified = false;
+            } else {
+                kycStatusBadge.innerHTML = `
+                    <div class="kyc-status pending" style="margin-top: 5px; padding: 5px 10px; display: inline-block;">
+                        <i class="fas fa-id-card"></i> KYC Not Submitted
+                    </div>
+                `;
+                userProfile.kyc_verified = false;
+            }
+        }
+
+        // Check if user is already logged in
+        async function checkAuthState() {
+            try {
+                // Check localStorage for existing session
+                const allUsers = JSON.parse(localStorage.getItem('allUsers') || '{}');
+                if (Object.keys(allUsers).length > 0) {
+                    // Auto-login the first user (for demo purposes)
+                    const firstUser = Object.entries(allUsers)[0];
+                    const [username, userData] = firstUser;
+                    const storedUser = localStorage.getItem(`user_${userData.id}`);
+                    
+                    if (storedUser) {
+                        currentUser = { id: userData.id, email: userData.email, user_metadata: { username: username } };
+                        userProfile = JSON.parse(storedUser);
+                        
+                        if (authContainer) authContainer.style.display = 'none';
+                        if (appContainer) appContainer.style.display = 'block';
+                        
+                        loadCompletedTasks();
+                        checkVideoAvailability();
+                        checkAppRewardAvailability();
+                        updateUserInterface();
+                    }
+                }
+            } catch (error) {
+                console.error('Auth state error:', error);
+            }
+        }
+
+        // DOM Elements and Event Listeners
         const authContainer = document.getElementById('auth-container');
         const appContainer = document.getElementById('app-container');
         const loginForm = document.getElementById('login-form');
@@ -1473,50 +2364,7 @@
         const notification = document.getElementById('notification');
         const forgotPassword = document.getElementById('forgot-password');
 
-        // Show Notification
-        function showNotification(message, type = 'info') {
-            if (!notification) return;
-            
-            notification.textContent = message;
-            notification.className = `notification ${type} show`;
-            
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 3000);
-        }
-
-        // Set Loading State
-        function setLoading(element, isLoading) {
-            if (!element) return;
-            
-            if (isLoading) {
-                element.classList.add('loading');
-                element.disabled = true;
-            } else {
-                element.classList.remove('loading');
-                element.disabled = false;
-            }
-        }
-
-        // Generate Referral Code
-        function generateReferralCode() {
-            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-            let code = 'EK';
-            for (let i = 0; i < 5; i++) {
-                code += chars.charAt(Math.floor(Math.random() * chars.length));
-            }
-            return code;
-        }
-
-        // Initialize Database Tables (if they don't exist)
-        async function initializeDatabase() {
-            try {
-                // This is a fallback - in production, you should create these tables manually in Supabase
-                console.log('Database initialization would happen here');
-            } catch (error) {
-                console.log('Database already initialized or error:', error);
-            }
-        }
+        // Event Listeners
 
         // Show Signup Form
         if (showSignup) {
@@ -1536,134 +2384,7 @@
             });
         }
 
-        // Forgot Password
-        if (forgotPassword) {
-            forgotPassword.addEventListener('click', async (e) => {
-                e.preventDefault();
-                const email = prompt('Enter your email to reset password:');
-                if (email) {
-                    try {
-                        const { error } = await supabase.auth.resetPasswordForEmail(email, {
-                            redirectTo: window.location.href,
-                        });
-                        
-                        if (error) throw error;
-                        
-                        showNotification('Password reset email sent! Check your inbox.', 'success');
-                    } catch (error) {
-                        console.error('Error sending password reset:', error);
-                        showNotification('Error sending reset email. Please try again.', 'error');
-                    }
-                }
-            });
-        }
-
-        // Signup Function
-        if (signupBtn) {
-            signupBtn.addEventListener('click', async () => {
-                const username = document.getElementById('signup-username')?.value;
-                const email = document.getElementById('signup-email')?.value;
-                const phone = document.getElementById('signup-phone')?.value;
-                const password = document.getElementById('signup-password')?.value;
-                const referralCode = document.getElementById('signup-referral')?.value;
-                
-                if (!username || !email || !phone || !password) {
-                    showNotification('Please fill all fields', 'error');
-                    return;
-                }
-                
-                setLoading(signupBtn, true);
-                
-                try {
-                    // Create user in Supabase Auth
-                    const { data: authData, error: authError } = await supabase.auth.signUp({
-                        email,
-                        password,
-                        options: {
-                            data: {
-                                username,
-                                phone
-                            }
-                        }
-                    });
-                    
-                    if (authError) throw authError;
-                    
-                    if (!authData.user) {
-                        throw new Error('User creation failed');
-                    }
-                    
-                    // Generate unique referral code for the new user
-                    const userReferralCode = generateReferralCode();
-                    
-                    // Create user profile in database with error handling
-                    let profileError = null;
-                    try {
-                        const { error } = await supabase
-                            .from('profiles')
-                            .insert([
-                                {
-                                    id: authData.user.id,
-                                    username,
-                                    email,
-                                    phone,
-                                    referral_code: userReferralCode,
-                                    referred_by: referralCode || null,
-                                    total_earnings: 0,
-                                    video_earnings: 0,
-                                    whatsapp_earnings: 0,
-                                    referral_earnings: 0,
-                                    bonus_earnings: 0,
-                                    balance: 0,
-                                    kyc_verified: false,
-                                    kyc_status: 'not_submitted'
-                                }
-                            ]);
-                        
-                        profileError = error;
-                    } catch (dbError) {
-                        console.log('Profiles table might not exist, using localStorage fallback');
-                        // Fallback to localStorage
-                        const userData = {
-                            id: authData.user.id,
-                            username,
-                            email,
-                            phone,
-                            referral_code: userReferralCode,
-                            referred_by: referralCode || null,
-                            total_earnings: 0,
-                            video_earnings: 0,
-                            whatsapp_earnings: 0,
-                            referral_earnings: 0,
-                            bonus_earnings: 0,
-                            balance: 0,
-                            kyc_verified: false,
-                            kyc_status: 'not_submitted'
-                        };
-                        localStorage.setItem(`user_${authData.user.id}`, JSON.stringify(userData));
-                    }
-                    
-                    // If referred by someone, add referral bonus (simplified)
-                    if (referralCode) {
-                        showNotification(`Referral code ${referralCode} applied!`, 'success');
-                    }
-                    
-                    showNotification('Account created successfully! Please check your email to verify your account.', 'success');
-                    
-                    // Switch to login form
-                    if (signupForm) signupForm.style.display = 'none';
-                    if (loginForm) loginForm.style.display = 'block';
-                    
-                } catch (error) {
-                    console.error('Signup error:', error);
-                    showNotification(error.message || 'Signup failed. Please try again.', 'error');
-                } finally {
-                    setLoading(signupBtn, false);
-                }
-            });
-        }
-
-        // Login Function
+        // Login Button
         if (loginBtn) {
             loginBtn.addEventListener('click', async () => {
                 const email = document.getElementById('login-email')?.value;
@@ -1680,830 +2401,112 @@
             });
         }
 
-        // Login Helper Function
-        async function loginUser(email, password) {
-            try {
-                const { data, error } = await supabase.auth.signInWithPassword({
-                    email,
-                    password
-                });
+        // Signup Button
+        if (signupBtn) {
+            signupBtn.addEventListener('click', async () => {
+                const username = document.getElementById('signup-username')?.value;
+                const email = document.getElementById('signup-email')?.value;
+                const phone = document.getElementById('signup-phone')?.value;
+                const password = document.getElementById('signup-password')?.value;
+                const referralCode = document.getElementById('signup-referral')?.value;
                 
-                if (error) throw error;
-                
-                if (!data.user) {
-                    throw new Error('Login failed - no user data returned');
+                if (!username || !email || !phone || !password) {
+                    showNotification('Please fill all fields', 'error');
+                    return;
                 }
                 
-                currentUser = data.user;
-                await loadUserProfile();
+                setLoading(signupBtn, true);
                 
-                // Check for daily login bonus
-                await checkDailyBonus();
-                
-                if (authContainer) authContainer.style.display = 'none';
-                if (appContainer) appContainer.style.display = 'block';
-                
-                showNotification('Login successful!', 'success');
-                
-            } catch (error) {
-                console.error('Login error:', error);
-                showNotification(error.message || 'Login failed. Please check your credentials.', 'error');
-            }
-        }
-
-        // Google Login - Fixed with proper configuration
-        if (googleLogin) {
-            googleLogin.addEventListener('click', async () => {
                 try {
-                    // First, you need to enable Google OAuth in your Supabase dashboard
-                    // Go to Authentication > Settings > Auth Providers > Google and enable it
-                    const { data, error } = await supabase.auth.signInWithOAuth({
-                        provider: 'google',
-                        options: {
-                            redirectTo: window.location.origin
-                        }
-                    });
+                    await registerUser(username, email, phone, password, referralCode);
                     
-                    if (error) throw error;
+                    showNotification('Account created successfully!', 'success');
+                    
+                    // Switch to login form
+                    if (signupForm) signupForm.style.display = 'none';
+                    if (loginForm) loginForm.style.display = 'block';
                     
                 } catch (error) {
-                    console.error('Google login error:', error);
-                    showNotification('Google login failed. Please enable Google OAuth in Supabase dashboard or use email login.', 'error');
+                    console.error('Signup error:', error);
+                    showNotification(error.message || 'Signup failed. Please try again.', 'error');
+                } finally {
+                    setLoading(signupBtn, false);
                 }
             });
         }
 
-        // Load User Profile with fallback
-        async function loadUserProfile() {
-            if (!currentUser) return;
-            
-            try {
-                // Try to load from Supabase
-                const { data, error } = await supabase
-                    .from('profiles')
-                    .select('*')
-                    .eq('id', currentUser.id)
-                    .single();
-                
-                if (error) throw error;
-                
-                userProfile = data;
-                
-            } catch (error) {
-                console.log('Loading from Supabase failed, using localStorage fallback:', error);
-                // Fallback to localStorage
-                const storedData = localStorage.getItem(`user_${currentUser.id}`);
-                if (storedData) {
-                    userProfile = JSON.parse(storedData);
-                } else {
-                    // Create default profile
-                    userProfile = {
-                        id: currentUser.id,
-                        username: currentUser.user_metadata?.username || 'User',
-                        email: currentUser.email,
-                        phone: currentUser.user_metadata?.phone || 'Not set',
-                        referral_code: generateReferralCode(),
-                        balance: 0,
-                        video_earnings: 0,
-                        whatsapp_earnings: 0,
-                        referral_earnings: 0,
-                        bonus_earnings: 0,
-                        kyc_verified: false,
-                        kyc_status: 'not_submitted'
-                    };
-                    localStorage.setItem(`user_${currentUser.id}`, JSON.stringify(userProfile));
-                }
-            }
-            
-            // Update UI with user data
-            updateUserInterface();
-        }
-
-        // Update User Interface
-        function updateUserInterface() {
-            if (!userProfile) return;
-            
-            const greeting = document.getElementById('greeting');
-            const profileName = document.getElementById('profile-name');
-            const profileEmail = document.getElementById('profile-email');
-            const profilePhone = document.getElementById('profile-phone');
-            const userReferralCode = document.getElementById('user-referral-code');
-            const referralLink = document.getElementById('referral-link');
-            
-            if (greeting) greeting.textContent = `Hello, ${userProfile.username}!`;
-            if (profileName) profileName.textContent = userProfile.username;
-            if (profileEmail) profileEmail.textContent = userProfile.email;
-            if (profilePhone) profilePhone.textContent = userProfile.phone;
-            if (userReferralCode) userReferralCode.textContent = userProfile.referral_code;
-            if (referralLink) referralLink.value = `https://earnkenya.co.ke/ref/${userProfile.referral_code}`;
-            
-            // Update earnings
-            document.getElementById('total-balance').textContent = userProfile.balance || 0;
-            document.getElementById('video-earnings').textContent = userProfile.video_earnings || 0;
-            document.getElementById('whatsapp-earnings').textContent = userProfile.whatsapp_earnings || 0;
-            document.getElementById('referral-earnings').textContent = userProfile.referral_earnings || 0;
-            document.getElementById('bonus-earnings').textContent = userProfile.bonus_earnings || 0;
-            
-            // Load additional data
-            loadReferralsCount();
-            loadRecentActivity();
-            loadCompletedTasks();
-            updateKYCStatus(userProfile.kyc_status);
-        }
-
-        // Load Referrals Count (simplified)
-        async function loadReferralsCount() {
-            try {
-                // For demo purposes, we'll use a simple count
-                const referralsCount = Math.floor(Math.random() * 5); // Random number for demo
-                document.getElementById('total-referrals').textContent = referralsCount;
-                document.getElementById('referral-total').textContent = userProfile.referral_earnings || 0;
-                
-                // Load referrals list
-                let referralsHtml = '';
-                if (referralsCount > 0) {
-                    for (let i = 0; i < referralsCount; i++) {
-                        referralsHtml += `
-                            <div class="activity-item">
-                                <div class="activity-icon">
-                                    <i class="fas fa-user"></i>
-                                </div>
-                                <div class="activity-details">
-                                    <h4>Referred User ${i + 1}</h4>
-                                    <p>Joined recently</p>
-                                </div>
-                                <div class="activity-amount">+KSH 10</div>
-                            </div>
-                        `;
-                    }
-                } else {
-                    referralsHtml = '<p>No referrals yet. Share your referral link to earn KSH 10 per referral!</p>';
-                }
-                
-                document.getElementById('referrals-list').innerHTML = referralsHtml;
-                
-            } catch (error) {
-                console.error('Error loading referrals:', error);
-            }
-        }
-
-        // Load Recent Activity (simplified)
-        async function loadRecentActivity() {
-            try {
-                // For demo, create some sample activity
-                const sampleActivities = [
-                    { type: 'video', description: 'Watched video', amount: 5, date: new Date() },
-                    { type: 'whatsapp', description: 'Shared on WhatsApp', amount: 3, date: new Date(Date.now() - 86400000) },
-                    { type: 'bonus', description: 'Daily bonus', amount: 3, date: new Date(Date.now() - 172800000) }
-                ];
-                
-                let activityHtml = '';
-                for (const activity of sampleActivities) {
-                    const icon = getTransactionIcon(activity.type);
-                    const date = activity.date.toLocaleDateString();
-                    
-                    activityHtml += `
-                        <div class="activity-item">
-                            <div class="activity-icon">
-                                <i class="${icon}"></i>
-                            </div>
-                            <div class="activity-details">
-                                <h4>${activity.description}</h4>
-                                <p>${date}</p>
-                            </div>
-                            <div class="activity-amount">+KSH ${activity.amount}</div>
-                        </div>
-                    `;
-                }
-                
-                document.getElementById('recent-activity').innerHTML = activityHtml;
-                
-            } catch (error) {
-                console.error('Error loading activity:', error);
-                document.getElementById('recent-activity').innerHTML = '<p>No recent activity</p>';
-            }
-        }
-
-        // Load Completed Tasks (simplified)
-        async function loadCompletedTasks() {
-            try {
-                // For demo, use the same sample data
-                const sampleTasks = [
-                    { type: 'video', description: 'Watched Product Review', amount: 5, date: new Date() },
-                    { type: 'whatsapp', description: 'Shared promo video', amount: 3, date: new Date(Date.now() - 86400000) }
-                ];
-                
-                let tasksHtml = '';
-                if (sampleTasks.length > 0) {
-                    for (const task of sampleTasks) {
-                        const icon = getTransactionIcon(task.type);
-                        const date = task.date.toLocaleDateString();
-                        
-                        tasksHtml += `
-                            <div class="activity-item">
-                                <div class="activity-icon">
-                                    <i class="${icon}"></i>
-                                </div>
-                                <div class="activity-details">
-                                    <h4>${task.description}</h4>
-                                    <p>Completed on ${date}</p>
-                                </div>
-                                <div class="activity-amount">+KSH ${task.amount}</div>
-                            </div>
-                        `;
-                    }
-                } else {
-                    tasksHtml = '<p>No completed tasks yet</p>';
-                }
-                
-                document.getElementById('completed-tasks').innerHTML = tasksHtml;
-                
-            } catch (error) {
-                console.error('Error loading completed tasks:', error);
-            }
-        }
-
-        // Get Transaction Icon
-        function getTransactionIcon(type) {
-            switch (type) {
-                case 'video': return 'fas fa-play-circle';
-                case 'whatsapp': return 'fab fa-whatsapp';
-                case 'referral_bonus': return 'fas fa-user-plus';
-                case 'bonus': return 'fas fa-calendar-day';
-                case 'deposit': return 'fas fa-plus';
-                case 'withdrawal': return 'fas fa-money-bill-wave';
-                default: return 'fas fa-coins';
-            }
-        }
-
-        // Check Daily Bonus
-        async function checkDailyBonus() {
-            try {
-                const today = new Date().toDateString();
-                const lastBonusDate = localStorage.getItem(`lastBonusDate_${currentUser.id}`);
-                
-                if (lastBonusDate !== today) {
-                    // Enable bonus claim
-                    if (claimBonusBtn) {
-                        claimBonusBtn.disabled = false;
-                        claimBonusBtn.textContent = 'Claim Bonus';
-                    }
-                } else {
-                    // Bonus already claimed today
-                    if (claimBonusBtn) {
-                        claimBonusBtn.disabled = true;
-                        claimBonusBtn.textContent = 'Bonus Already Claimed';
-                    }
-                }
-            } catch (error) {
-                console.error('Error checking daily bonus:', error);
-            }
-        }
-
-        // Claim Daily Bonus
-        if (claimBonusBtn) {
-            claimBonusBtn.addEventListener('click', async () => {
-                try {
-                    const bonusAmount = 3; // KSH 3 daily bonus
-                    
-                    // Update user balance and bonus earnings
-                    userProfile.balance = (userProfile.balance || 0) + bonusAmount;
-                    userProfile.bonus_earnings = (userProfile.bonus_earnings || 0) + bonusAmount;
-                    
-                    // Save to localStorage as fallback
-                    localStorage.setItem(`user_${currentUser.id}`, JSON.stringify(userProfile));
-                    
-                    // Try to update Supabase if possible
-                    try {
-                        await supabase
-                            .from('profiles')
-                            .update({
-                                balance: userProfile.balance,
-                                bonus_earnings: userProfile.bonus_earnings
-                            })
-                            .eq('id', currentUser.id);
-                    } catch (dbError) {
-                        console.log('Supabase update failed, using localStorage only');
-                    }
-                    
-                    // Update local storage
-                    const today = new Date().toDateString();
-                    localStorage.setItem(`lastBonusDate_${currentUser.id}`, today);
-                    
-                    // Update UI
-                    document.getElementById('total-balance').textContent = userProfile.balance;
-                    document.getElementById('bonus-earnings').textContent = userProfile.bonus_earnings;
-                    
-                    // Disable button
-                    claimBonusBtn.disabled = true;
-                    claimBonusBtn.textContent = 'Bonus Already Claimed';
-                    
-                    showNotification(`Daily bonus of KSH ${bonusAmount} claimed!`, 'success');
-                    
-                    // Reload activity
-                    loadRecentActivity();
-                    loadCompletedTasks();
-                    
-                } catch (error) {
-                    console.error('Error claiming bonus:', error);
-                    showNotification('Error claiming bonus. Please try again.', 'error');
-                }
-            });
-        }
-
-        // Navigation
-        navItems.forEach(item => {
-            item.addEventListener('click', (e) => {
-                e.preventDefault();
-                
-                // Remove active class from all nav items
-                navItems.forEach(nav => nav.classList.remove('active'));
-                
-                // Add active class to clicked nav item
-                item.classList.add('active');
-                
-                // Hide all pages
-                pages.forEach(page => page.classList.remove('active'));
-                
-                // Show selected page
-                const pageId = item.getAttribute('data-page');
-                const targetPage = document.getElementById(pageId);
-                if (targetPage) {
-                    targetPage.classList.add('active');
-                }
-            });
-        });
-
-        // View All Links
-        document.querySelectorAll('[data-page]').forEach(link => {
-            if (link.hasAttribute('data-page') && link.getAttribute('href') === '#') {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const pageId = link.getAttribute('data-page');
-                    
-                    // Update navigation
-                    navItems.forEach(nav => nav.classList.remove('active'));
-                    const targetNav = document.querySelector(`[data-page="${pageId}"]`);
-                    if (targetNav) {
-                        targetNav.classList.add('active');
-                    }
-                    
-                    // Show page
-                    pages.forEach(page => page.classList.remove('active'));
-                    const targetPage = document.getElementById(pageId);
-                    if (targetPage) {
-                        targetPage.classList.add('active');
-                    }
-                });
-            }
-        });
-
-        // Deposit Modal
-        if (depositBtn) {
-            depositBtn.addEventListener('click', () => {
-                if (depositModal) depositModal.classList.add('active');
-            });
-        }
-
-        // Withdraw Modal
-        if (withdrawBtn) {
-            withdrawBtn.addEventListener('click', () => {
-                if (!userProfile.kyc_verified) {
-                    const kycWarning = document.getElementById('withdraw-kyc-warning');
-                    if (kycWarning) kycWarning.style.display = 'flex';
-                } else {
-                    const kycWarning = document.getElementById('withdraw-kyc-warning');
-                    if (kycWarning) kycWarning.style.display = 'none';
-                }
-                if (withdrawModal) withdrawModal.classList.add('active');
-            });
-        }
-
-        // KYC Verification Modal
+        // Account Menu Buttons - FIXED
         if (kycVerificationBtn) {
             kycVerificationBtn.addEventListener('click', (e) => {
                 e.preventDefault();
-                loadKYCStatus();
-                if (kycModal) kycModal.classList.add('active');
+                document.getElementById('kyc-modal').classList.add('active');
             });
         }
 
-        // Edit Profile Modal
         if (editProfileBtn) {
             editProfileBtn.addEventListener('click', (e) => {
                 e.preventDefault();
                 document.getElementById('edit-username').value = userProfile.username;
                 document.getElementById('edit-phone').value = userProfile.phone;
-                if (editProfileModal) editProfileModal.classList.add('active');
+                document.getElementById('edit-profile-modal').classList.add('active');
             });
         }
 
-        // Change Password Modal
         if (changePasswordBtn) {
             changePasswordBtn.addEventListener('click', (e) => {
                 e.preventDefault();
-                if (changePasswordModal) changePasswordModal.classList.add('active');
+                document.getElementById('change-password-modal').classList.add('active');
             });
         }
 
-        // Transaction History Modal
         if (transactionHistoryBtn) {
             transactionHistoryBtn.addEventListener('click', (e) => {
                 e.preventDefault();
-                loadTransactionHistory();
-                if (transactionHistoryModal) transactionHistoryModal.classList.add('active');
+                document.getElementById('transaction-history-modal').classList.add('active');
             });
         }
 
-        // Support Modal
         if (supportBtn) {
             supportBtn.addEventListener('click', (e) => {
                 e.preventDefault();
-                if (supportModal) supportModal.classList.add('active');
+                document.getElementById('support-modal').classList.add('active');
             });
         }
 
-        // Close Modals
-        closeModals.forEach(btn => {
-            btn.addEventListener('click', () => {
-                if (depositModal) depositModal.classList.remove('active');
-                if (withdrawModal) withdrawModal.classList.remove('active');
-                if (kycModal) kycModal.classList.remove('active');
-                if (editProfileModal) editProfileModal.classList.remove('active');
-                if (changePasswordModal) changePasswordModal.classList.remove('active');
-                if (transactionHistoryModal) transactionHistoryModal.classList.remove('active');
-                if (supportModal) supportModal.classList.remove('active');
-            });
-        });
-
-        // Cancel Edit Profile
-        if (cancelEdit) {
-            cancelEdit.addEventListener('click', () => {
-                if (editProfileModal) editProfileModal.classList.remove('active');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                currentUser = null;
+                userProfile = null;
+                
+                if (authContainer) authContainer.style.display = 'flex';
+                if (appContainer) appContainer.style.display = 'none';
+                
+                showNotification('Logged out successfully', 'info');
             });
         }
 
-        // Cancel Password Change
-        if (cancelPassword) {
-            cancelPassword.addEventListener('click', () => {
-                if (changePasswordModal) changePasswordModal.classList.remove('active');
-            });
-        }
-
-        // Close modals when clicking outside
+        // Video Watch Buttons
         document.addEventListener('click', (e) => {
-            if (e.target.classList.contains('modal')) {
-                e.target.classList.remove('active');
+            if (e.target.classList.contains('watch-video-btn')) {
+                const videoId = e.target.getAttribute('data-video-id');
+                const duration = parseInt(e.target.getAttribute('data-duration'));
+                const amount = parseInt(e.target.getAttribute('data-amount'));
+                
+                setupVideoPlayer(videoId, duration, amount);
             }
         });
 
-        // Save Profile
-        if (saveProfile) {
-            saveProfile.addEventListener('click', async () => {
-                const username = document.getElementById('edit-username').value;
-                const phone = document.getElementById('edit-phone').value;
-                
-                if (!username || !phone) {
-                    showNotification('Please fill all fields', 'error');
-                    return;
-                }
-                
-                setLoading(saveProfile, true);
-                
-                try {
-                    userProfile.username = username;
-                    userProfile.phone = phone;
-                    
-                    // Save to localStorage
-                    localStorage.setItem(`user_${currentUser.id}`, JSON.stringify(userProfile));
-                    
-                    // Try to update Supabase
-                    try {
-                        await supabase
-                            .from('profiles')
-                            .update({
-                                username: username,
-                                phone: phone
-                            })
-                            .eq('id', currentUser.id);
-                    } catch (dbError) {
-                        console.log('Supabase update failed, using localStorage');
-                    }
-                    
-                    // Update UI
-                    updateUserInterface();
-                    
-                    if (editProfileModal) editProfileModal.classList.remove('active');
-                    showNotification('Profile updated successfully!', 'success');
-                    
-                } catch (error) {
-                    console.error('Error updating profile:', error);
-                    showNotification('Error updating profile. Please try again.', 'error');
-                } finally {
-                    setLoading(saveProfile, false);
-                }
-            });
-        }
-
-        // Update Password
-        if (updatePassword) {
-            updatePassword.addEventListener('click', async () => {
-                const currentPassword = document.getElementById('current-password').value;
-                const newPassword = document.getElementById('new-password').value;
-                const confirmPassword = document.getElementById('confirm-password').value;
-                
-                if (!currentPassword || !newPassword || !confirmPassword) {
-                    showNotification('Please fill all fields', 'error');
-                    return;
-                }
-                
-                if (newPassword !== confirmPassword) {
-                    showNotification('New passwords do not match', 'error');
-                    return;
-                }
-                
-                setLoading(updatePassword, true);
-                
-                try {
-                    const { error } = await supabase.auth.updateUser({
-                        password: newPassword
-                    });
-                    
-                    if (error) throw error;
-                    
-                    if (changePasswordModal) changePasswordModal.classList.remove('active');
-                    showNotification('Password updated successfully!', 'success');
-                    
-                    // Clear password fields
-                    document.getElementById('current-password').value = '';
-                    document.getElementById('new-password').value = '';
-                    document.getElementById('confirm-password').value = '';
-                    
-                } catch (error) {
-                    console.error('Error updating password:', error);
-                    showNotification('Error updating password. Please try again.', 'error');
-                } finally {
-                    setLoading(updatePassword, false);
-                }
-            });
-        }
-
-        // Send Support Message
-        if (sendSupport) {
-            sendSupport.addEventListener('click', async () => {
-                const subject = document.getElementById('support-subject').value;
-                const message = document.getElementById('support-message').value;
-                
-                if (!subject || !message) {
-                    showNotification('Please fill all fields', 'error');
-                    return;
-                }
-                
-                setLoading(sendSupport, true);
-                
-                try {
-                    // Send email using EmailJS
-                    if (typeof emailjs !== 'undefined') {
-                        const templateParams = {
-                            to_email: 'ogorofelix276@gmail.com',
-                            from_name: userProfile.username,
-                            from_email: userProfile.email,
-                            subject: subject,
-                            message: message,
-                            user_id: currentUser.id
-                        };
-
-                        await emailjs.send(
-                            EMAILJS_CONFIG.serviceId,
-                            EMAILJS_CONFIG.templateIds.support,
-                            templateParams
-                        );
-                    }
-                    
-                    if (supportModal) supportModal.classList.remove('active');
-                    showNotification('Support message sent successfully! We will get back to you soon.', 'success');
-                    
-                    // Clear support fields
-                    document.getElementById('support-subject').value = '';
-                    document.getElementById('support-message').value = '';
-                    
-                } catch (error) {
-                    console.error('Error sending support message:', error);
-                    showNotification('Error sending support message. Please try again or contact us directly.', 'error');
-                } finally {
-                    setLoading(sendSupport, false);
-                }
-            });
-        }
-
-        // Load Transaction History
-        async function loadTransactionHistory() {
-            try {
-                const transactionList = document.getElementById('transaction-list');
-                if (!transactionList) return;
-                
-                // For demo, create sample transactions
-                const sampleTransactions = [
-                    { type: 'deposit', description: 'Deposit via M-Pesa', amount: 100, status: 'completed', created_at: new Date() },
-                    { type: 'withdrawal', description: 'Withdrawal to 0712345678', amount: -50, status: 'pending', created_at: new Date(Date.now() - 86400000) },
-                    { type: 'video', description: 'Watched video task', amount: 5, status: 'completed', created_at: new Date(Date.now() - 172800000) },
-                    { type: 'bonus', description: 'Daily login bonus', amount: 3, status: 'completed', created_at: new Date(Date.now() - 259200000) }
-                ];
-                
-                let transactionsHtml = '';
-                if (sampleTransactions.length > 0) {
-                    for (const transaction of sampleTransactions) {
-                        const icon = getTransactionIcon(transaction.type);
-                        const date = new Date(transaction.created_at).toLocaleDateString();
-                        const amountClass = transaction.amount > 0 ? 'activity-amount' : 'activity-amount negative';
-                        
-                        transactionsHtml += `
-                            <div class="activity-item">
-                                <div class="activity-icon">
-                                    <i class="${icon}"></i>
-                                </div>
-                                <div class="activity-details">
-                                    <h4>${transaction.description}</h4>
-                                    <p>${date} • ${transaction.status}</p>
-                                </div>
-                                <div class="${amountClass}">${transaction.amount > 0 ? '+' : ''}KSH ${Math.abs(transaction.amount)}</div>
-                            </div>
-                        `;
-                    }
-                } else {
-                    transactionsHtml = '<p>No transactions yet</p>';
-                }
-                
-                transactionList.innerHTML = transactionsHtml;
-                
-            } catch (error) {
-                console.error('Error loading transaction history:', error);
+        // App Reward Buttons
+        document.addEventListener('click', (e) => {
+            if (e.target.id === 'claim-app-reward' || e.target.id === 'claim-app-reward-2') {
+                claimAppReward();
             }
-        }
-
-        // Proceed with Deposit
-        if (proceedDeposit) {
-            proceedDeposit.addEventListener('click', async () => {
-                const amountInput = document.getElementById('deposit-amount');
-                const amount = amountInput ? parseInt(amountInput.value) : 0;
-                
-                if (amount && amount >= 100) {
-                    setLoading(proceedDeposit, true);
-                    
-                    try {
-                        // Update user balance
-                        userProfile.balance = (userProfile.balance || 0) + amount;
-                        
-                        // Save to localStorage
-                        localStorage.setItem(`user_${currentUser.id}`, JSON.stringify(userProfile));
-                        
-                        // Try to update Supabase
-                        try {
-                            await supabase
-                                .from('profiles')
-                                .update({
-                                    balance: userProfile.balance
-                                })
-                                .eq('id', currentUser.id);
-                        } catch (dbError) {
-                            console.log('Supabase update failed, using localStorage');
-                        }
-                        
-                        // Update UI
-                        document.getElementById('total-balance').textContent = userProfile.balance;
-                        
-                        if (depositModal) depositModal.classList.remove('active');
-                        if (amountInput) amountInput.value = '';
-                        
-                        showNotification(`Deposit of KSH ${amount} successful!`, 'success');
-                        
-                        // Reload activity
-                        loadRecentActivity();
-                        
-                    } catch (error) {
-                        console.error('Error processing deposit:', error);
-                        showNotification('Error processing deposit. Please try again.', 'error');
-                    } finally {
-                        setLoading(proceedDeposit, false);
-                    }
-                } else {
-                    showNotification('Please enter a valid amount (minimum KSH 100)', 'error');
-                }
-            });
-        }
-
-        // Proceed with Withdrawal
-        if (proceedWithdraw) {
-            proceedWithdraw.addEventListener('click', async () => {
-                const amountInput = document.getElementById('withdraw-amount');
-                const mpesaInput = document.getElementById('mpesa-number');
-                const amount = amountInput ? parseInt(amountInput.value) : 0;
-                const mpesa = mpesaInput ? mpesaInput.value : '';
-                
-                if (!amount || !mpesa) {
-                    showNotification('Please enter both amount and M-Pesa number', 'error');
-                    return;
-                }
-                
-                if (amount > userProfile.balance) {
-                    showNotification('Insufficient balance', 'error');
-                    return;
-                }
-                
-                if (!userProfile.kyc_verified) {
-                    showNotification('KYC verification required for withdrawals', 'error');
-                    return;
-                }
-                
-                setLoading(proceedWithdraw, true);
-                
-                try {
-                    // Update user balance
-                    userProfile.balance = (userProfile.balance || 0) - amount;
-                    
-                    // Save to localStorage
-                    localStorage.setItem(`user_${currentUser.id}`, JSON.stringify(userProfile));
-                    
-                    // Try to update Supabase
-                    try {
-                        await supabase
-                            .from('profiles')
-                            .update({
-                                balance: userProfile.balance
-                            })
-                            .eq('id', currentUser.id);
-                    } catch (dbError) {
-                        console.log('Supabase update failed, using localStorage');
-                    }
-                    
-                    // Update UI
-                    document.getElementById('total-balance').textContent = userProfile.balance;
-                    
-                    if (withdrawModal) withdrawModal.classList.remove('active');
-                    if (amountInput) amountInput.value = '';
-                    if (mpesaInput) mpesaInput.value = '';
-                    
-                    showNotification(`Withdrawal request of KSH ${amount} submitted!`, 'success');
-                    
-                    // Reload activity
-                    loadRecentActivity();
-                    
-                } catch (error) {
-                    console.error('Error processing withdrawal:', error);
-                    showNotification('Error processing withdrawal. Please try again.', 'error');
-                } finally {
-                    setLoading(proceedWithdraw, false);
-                }
-            });
-        }
-
-        // Copy Referral Code
-        if (copyReferral) {
-            copyReferral.addEventListener('click', () => {
-                const codeElement = document.getElementById('user-referral-code');
-                const code = codeElement ? codeElement.textContent : '';
-                if (code && navigator.clipboard) {
-                    navigator.clipboard.writeText(code).then(() => {
-                        showNotification('Referral code copied to clipboard!', 'success');
-                    }).catch(() => {
-                        // Fallback for older browsers
-                        const textArea = document.createElement('textarea');
-                        textArea.value = code;
-                        document.body.appendChild(textArea);
-                        textArea.select();
-                        document.execCommand('copy');
-                        document.body.removeChild(textArea);
-                        showNotification('Referral code copied to clipboard!', 'success');
-                    });
-                }
-            });
-        }
-
-        // Copy Referral Link
-        if (copyLink) {
-            copyLink.addEventListener('click', () => {
-                const linkInput = document.getElementById('referral-link');
-                const link = linkInput ? linkInput.value : '';
-                if (link && navigator.clipboard) {
-                    navigator.clipboard.writeText(link).then(() => {
-                        showNotification('Referral link copied to clipboard!', 'success');
-                    }).catch(() => {
-                        // Fallback for older browsers
-                        const textArea = document.createElement('textarea');
-                        textArea.value = link;
-                        document.body.appendChild(textArea);
-                        textArea.select();
-                        document.execCommand('copy');
-                        document.body.removeChild(textArea);
-                        showNotification('Referral link copied to clipboard!', 'success');
-                    });
-                }
-            });
-        }
+        });
 
         // Task Buttons
         document.addEventListener('click', async (e) => {
-            if (e.target.classList.contains('task-btn') && !e.target.classList.contains('completed')) {
+            if (e.target.classList.contains('task-btn') && !e.target.classList.contains('completed') && !e.target.classList.contains('watch-video-btn')) {
                 const taskType = e.target.getAttribute('data-task');
                 const taskId = e.target.getAttribute('data-task-id');
                 const amount = parseInt(e.target.getAttribute('data-amount'));
@@ -2511,69 +2514,8 @@
                 if (!taskType || !taskId || !amount) return;
                 
                 setLoading(e.target, true);
-                
-                try {
-                    // Update user balance and specific earnings
-                    userProfile.balance = (userProfile.balance || 0) + amount;
-                    
-                    if (taskType === 'video') {
-                        userProfile.video_earnings = (userProfile.video_earnings || 0) + amount;
-                    } else if (taskType === 'whatsapp') {
-                        userProfile.whatsapp_earnings = (userProfile.whatsapp_earnings || 0) + amount;
-                    } else if (taskType === 'referral') {
-                        userProfile.referral_earnings = (userProfile.referral_earnings || 0) + amount;
-                    }
-                    
-                    // Save to localStorage
-                    localStorage.setItem(`user_${currentUser.id}`, JSON.stringify(userProfile));
-                    
-                    // Try to update Supabase
-                    try {
-                        let updateData = { balance: userProfile.balance };
-                        if (taskType === 'video') {
-                            updateData.video_earnings = userProfile.video_earnings;
-                        } else if (taskType === 'whatsapp') {
-                            updateData.whatsapp_earnings = userProfile.whatsapp_earnings;
-                        } else if (taskType === 'referral') {
-                            updateData.referral_earnings = userProfile.referral_earnings;
-                        }
-                        
-                        await supabase
-                            .from('profiles')
-                            .update(updateData)
-                            .eq('id', currentUser.id);
-                    } catch (dbError) {
-                        console.log('Supabase update failed, using localStorage');
-                    }
-                    
-                    // Update UI
-                    document.getElementById('total-balance').textContent = userProfile.balance;
-                    
-                    if (taskType === 'video') {
-                        document.getElementById('video-earnings').textContent = userProfile.video_earnings;
-                    } else if (taskType === 'whatsapp') {
-                        document.getElementById('whatsapp-earnings').textContent = userProfile.whatsapp_earnings;
-                    } else if (taskType === 'referral') {
-                        document.getElementById('referral-earnings').textContent = userProfile.referral_earnings;
-                    }
-                    
-                    // Mark task as completed
-                    e.target.textContent = 'Completed';
-                    e.target.classList.add('completed');
-                    e.target.disabled = true;
-                    
-                    showNotification(`Task completed! Earned KSH ${amount}`, 'success');
-                    
-                    // Reload activity and tasks
-                    loadRecentActivity();
-                    loadCompletedTasks();
-                    
-                } catch (error) {
-                    console.error('Error completing task:', error);
-                    showNotification('Error completing task. Please try again.', 'error');
-                } finally {
-                    setLoading(e.target, false);
-                }
+                await completeTask(taskType, taskId, amount);
+                setLoading(e.target, false);
             }
         });
 
@@ -2606,6 +2548,13 @@
             const file = event.target.files[0];
             if (!file) return;
             
+            // Store file for later upload
+            if (side === 'front') {
+                kycFrontImage = file;
+            } else {
+                kycBackImage = file;
+            }
+            
             const reader = new FileReader();
             reader.onload = (e) => {
                 const preview = document.getElementById(`${side}-id-preview`);
@@ -2624,188 +2573,107 @@
         // Submit KYC
         if (submitKyc) {
             submitKyc.addEventListener('click', async () => {
-                setLoading(submitKyc, true);
+                if (!kycFrontImage || !kycBackImage) {
+                    showNotification('Please upload both front and back ID images', 'error');
+                    return;
+                }
                 
                 try {
-                    userProfile.kyc_status = 'pending';
+                    await submitKycDocuments(kycFrontImage, kycBackImage);
+                    
+                    if (kycModal) kycModal.classList.remove('active');
+                    updateKYCStatus('pending');
+                    
+                } catch (error) {
+                    console.error('KYC submission error:', error);
+                    showNotification(error.message || 'Error submitting KYC documents', 'error');
+                }
+            });
+        }
+
+        // Claim Daily Bonus
+        if (claimBonusBtn) {
+            claimBonusBtn.addEventListener('click', async () => {
+                try {
+                    const bonusAmount = 3;
+                    
+                    // Update user balance and bonus earnings
+                    userProfile.balance = (userProfile.balance || 0) + bonusAmount;
+                    userProfile.bonus_earnings = (userProfile.bonus_earnings || 0) + bonusAmount;
                     
                     // Save to localStorage
                     localStorage.setItem(`user_${currentUser.id}`, JSON.stringify(userProfile));
                     
-                    // Try to update Supabase
-                    try {
-                        await supabase
-                            .from('profiles')
-                            .update({
-                                kyc_status: 'pending'
-                            })
-                            .eq('id', currentUser.id);
-                    } catch (dbError) {
-                        console.log('Supabase update failed, using localStorage');
-                    }
+                    // Update local storage
+                    const today = new Date().toDateString();
+                    localStorage.setItem(`lastBonusDate_${currentUser.id}`, today);
                     
-                    updateKYCStatus('pending');
+                    // Update UI
+                    document.getElementById('total-balance').textContent = userProfile.balance;
+                    document.getElementById('bonus-earnings').textContent = userProfile.bonus_earnings;
                     
-                    if (kycModal) kycModal.classList.remove('active');
-                    showNotification('KYC documents submitted for verification', 'success');
+                    // Disable button
+                    claimBonusBtn.disabled = true;
+                    claimBonusBtn.textContent = 'Bonus Already Claimed';
+                    
+                    showNotification(`Daily bonus of KSH ${bonusAmount} claimed!`, 'success');
+                    
+                    // Reload activity
+                    loadRecentActivity();
+                    loadCompletedTasks();
                     
                 } catch (error) {
-                    console.error('Error submitting KYC:', error);
-                    showNotification('Error submitting KYC. Please try again.', 'error');
-                } finally {
-                    setLoading(submitKyc, false);
+                    console.error('Error claiming bonus:', error);
+                    showNotification('Error claiming bonus. Please try again.', 'error');
                 }
             });
         }
 
-        // Load KYC Status
-        function loadKYCStatus() {
-            const status = userProfile.kyc_status || 'not_submitted';
-            const kycStatusInfo = document.getElementById('kyc-status-info');
-            const kycUploadForm = document.getElementById('kyc-upload-form');
-            
-            if (!kycStatusInfo || !kycUploadForm) return;
-            
-            if (status === 'verified') {
-                kycStatusInfo.innerHTML = `
-                    <div class="kyc-status verified">
-                        <i class="fas fa-check-circle kyc-icon"></i>
-                        <div>Your KYC verification is complete and approved.</div>
-                    </div>
-                `;
-                kycUploadForm.style.display = 'none';
-            } else if (status === 'pending') {
-                kycStatusInfo.innerHTML = `
-                    <div class="kyc-status pending">
-                        <i class="fas fa-clock kyc-icon"></i>
-                        <div>Your KYC verification is pending review.</div>
-                    </div>
-                `;
-                kycUploadForm.style.display = 'none';
-            } else if (status === 'rejected') {
-                kycStatusInfo.innerHTML = `
-                    <div class="kyc-status rejected">
-                        <i class="fas fa-times-circle kyc-icon"></i>
-                        <div>Your KYC verification was rejected. Please submit again.</div>
-                    </div>
-                `;
-                kycUploadForm.style.display = 'block';
-            } else {
-                kycStatusInfo.innerHTML = `
-                    <div class="kyc-status pending">
-                        <i class="fas fa-id-card kyc-icon"></i>
-                        <div>Please complete KYC verification to withdraw funds.</div>
-                    </div>
-                `;
-                kycUploadForm.style.display = 'block';
-            }
-        }
+        // Close Modals
+        closeModals.forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.modal').forEach(modal => {
+                    modal.classList.remove('active');
+                });
+            });
+        });
 
-        // Update KYC Status in UI
-        function updateKYCStatus(status) {
-            const kycStatusBadge = document.getElementById('kyc-status-badge');
-            if (!kycStatusBadge) return;
-            
-            if (status === 'verified') {
-                kycStatusBadge.innerHTML = `
-                    <div class="kyc-status verified" style="margin-top: 5px; padding: 5px 10px; display: inline-block;">
-                        <i class="fas fa-check-circle"></i> KYC Verified
-                    </div>
-                `;
-                userProfile.kyc_verified = true;
-            } else if (status === 'pending') {
-                kycStatusBadge.innerHTML = `
-                    <div class="kyc-status pending" style="margin-top: 5px; padding: 5px 10px; display: inline-block;">
-                        <i class="fas fa-clock"></i> KYC Pending
-                    </div>
-                `;
-                userProfile.kyc_verified = false;
-            } else if (status === 'rejected') {
-                kycStatusBadge.innerHTML = `
-                    <div class="kyc-status rejected" style="margin-top: 5px; padding: 5px 10px; display: inline-block;">
-                        <i class="fas fa-times-circle"></i> KYC Rejected
-                    </div>
-                `;
-                userProfile.kyc_verified = false;
-            } else {
-                kycStatusBadge.innerHTML = `
-                    <div class="kyc-status pending" style="margin-top: 5px; padding: 5px 10px; display: inline-block;">
-                        <i class="fas fa-id-card"></i> KYC Not Submitted
-                    </div>
-                `;
-                userProfile.kyc_verified = false;
+        // Close modals when clicking outside
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                e.target.classList.remove('active');
             }
-        }
+        });
 
-        // Logout
-        if (logoutBtn) {
-            logoutBtn.addEventListener('click', async (e) => {
+        // Navigation
+        navItems.forEach(item => {
+            item.addEventListener('click', (e) => {
                 e.preventDefault();
                 
-                try {
-                    const { error } = await supabase.auth.signOut();
-                    if (error) throw error;
-                    
-                    currentUser = null;
-                    userProfile = null;
-                    
-                    if (authContainer) authContainer.style.display = 'flex';
-                    if (appContainer) appContainer.style.display = 'none';
-                    
-                    // Reset forms
-                    const loginEmail = document.getElementById('login-email');
-                    const loginPassword = document.getElementById('login-password');
-                    const signupUsername = document.getElementById('signup-username');
-                    const signupEmail = document.getElementById('signup-email');
-                    const signupPhone = document.getElementById('signup-phone');
-                    const signupPassword = document.getElementById('signup-password');
-                    const signupReferral = document.getElementById('signup-referral');
-                    
-                    if (loginEmail) loginEmail.value = '';
-                    if (loginPassword) loginPassword.value = '';
-                    if (signupUsername) signupUsername.value = '';
-                    if (signupEmail) signupEmail.value = '';
-                    if (signupPhone) signupPhone.value = '';
-                    if (signupPassword) signupPassword.value = '';
-                    if (signupReferral) signupReferral.value = '';
-                    
-                    // Show login form by default
-                    if (loginForm) loginForm.style.display = 'block';
-                    if (signupForm) signupForm.style.display = 'none';
-                    
-                    showNotification('Logged out successfully', 'info');
-                    
-                } catch (error) {
-                    console.error('Logout error:', error);
-                    showNotification('Error during logout. Please try again.', 'error');
+                // Remove active class from all nav items
+                navItems.forEach(nav => nav.classList.remove('active'));
+                
+                // Add active class to clicked nav item
+                item.classList.add('active');
+                
+                // Hide all pages
+                pages.forEach(page => page.classList.remove('active'));
+                
+                // Show selected page
+                const pageId = item.getAttribute('data-page');
+                const targetPage = document.getElementById(pageId);
+                if (targetPage) {
+                    targetPage.classList.add('active');
                 }
             });
-        }
+        });
 
-        // Check if user is already logged in
-        async function checkAuthState() {
-            try {
-                const { data, error } = await supabase.auth.getSession();
-                
-                if (error) throw error;
-                
-                if (data.session) {
-                    currentUser = data.session.user;
-                    await loadUserProfile();
-                    
-                    if (authContainer) authContainer.style.display = 'none';
-                    if (appContainer) appContainer.style.display = 'block';
-                }
-            } catch (error) {
-                console.error('Auth state error:', error);
-            }
-        }
-
-        // Initialize app
+        // Initialize the application
         document.addEventListener('DOMContentLoaded', function() {
             initializeDatabase();
             checkAuthState();
         });
+
     </script>
 </body>
 </html>
